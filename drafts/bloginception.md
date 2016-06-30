@@ -1,8 +1,10 @@
 [//]: # (TITLE: Bloginception)
-[//]: # (DATE: 2016-05-20T13:46:00+01:00)
+[//]: # (DATE: 2016-07-10T12:00:00+01:00)
 [//]: # (TAGS: php, blog, symfony)
 
 I think the need to blog for a programmer is something inhert. It's a desire to spread knowledge, and create a post is something everyone can read. So it's a bit strange, at least to me, that there are not more blogging platforms targeted at developers. A quick google search either results in Wordpress plugins, NodeJS HTML generators or CMS solutions.
+
+This happends more often if I have to belive this twitter post: https://twitter.com/iamdevloper/status/743799765566054410. I think there are more developers which create their own blogging software and then blog about it, like... this post. Then again, it shows that there is no proper solution for software development blogs yet.
 
 # Github as content management
 A quick brainstorming session later with Iltar, we thought we could do better. Something that is build with versioning in mind, flexable, open-source and very low maintenaince. We came up with an idea to use Github as version management and just create some software that aggreagtes everything. Because blog posts are nothing more than just pieces of text, and why not verion it with a VCS like git.
