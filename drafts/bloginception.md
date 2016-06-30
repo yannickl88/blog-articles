@@ -17,7 +17,7 @@ As with Github, we try to leverage other technologies. We do the same for parsin
 We do the same with profile information, we simply use [Gravatar][gravatar] for the avatars instead of hosting them ourselves.
 
 # What did we write
-So, you might be wondering, what did we actually write? Of course, we made some software to glue all these packages together. We used a simple `Symfony` application which we use for the handling of web requests and rendering the pages. It also allows us to use the `Symfony` routing to create links to pages.
+So, you might be wondering, what did we actually write? Of course, we made some software to glue all these packages together. We created a simple `Symfony` application which we use for the handling of web requests and rendering the pages. It also allows us to use the `Symfony` routing to create links to pages.
 
 We also wrote a bit of software to manage and maintain the linked git repositories. This is able to update a repository to the latest version and index where all the files are. Using this, we can update blogs when changes occur. These can be triggered by the [Github Web-Hooks][github-webhooks].
 
