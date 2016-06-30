@@ -1,0 +1,10 @@
+author:
+    name:  Yannick de Lange
+    email: yannick.l.88@gmail.com
+    urls:
+        github:   https://github.com/yannickl88/
+
+settings:
+    introduction: author.md
+    drafts: /drafts/
+    published: /published/
