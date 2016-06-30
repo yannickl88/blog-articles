@@ -1,3 +1,7 @@
+[//]: # (TITLE: Bloginception)
+[//]: # (DATE: 2016-05-20T13:46:00+01:00)
+[//]: # (TAGS: php, blog, symfony)
+
 I think the need to blog for a programmer is something inhert. It's a desire to spread knowledge, and create a post is something everyone can read. So it's a bit strange, at least to me, that there are not more blogging platforms targeted at developers. A quick google search either results in Wordpress plugins, NodeJS HTML generators or CMS solutions.
 
 # Github as content management
