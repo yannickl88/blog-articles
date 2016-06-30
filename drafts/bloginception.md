@@ -14,7 +14,7 @@ We decided that each author should just have its own repository where they manag
 # Standing on the sholders of giants
 As with Github, we try to leaverage other technologies. We do the same for parsing markdown. Instead of trying to write our own, we use the [erusev/parsedown](https://github.com/erusev/parsedown) package. This in combination with [Prism.js](http://prismjs.com/) we have a way to write code snippets in posts with syntax highlighting.
 
-We do the same with profile information, we simply use [Gravatar](https://gravatar.com/).
+We do the same with profile information, we simply use [Gravatar](https://gravatar.com/) for the avatars instead of hosting them ourselfs.
 
 # What did we write
 So, you might be wondering, what did we actually write? Ofcourse, we made some software to glue all these packages together. We used a simple `Symfony` application which we use for the handling of web requests and rendering the pages. It also allows us to use the `Symfony` routing to create links to pages.
