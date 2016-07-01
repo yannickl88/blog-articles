@@ -1,5 +1,5 @@
 [//]: # (TITLE: Bloginception)
-[//]: # (DATE: 2016-07-10T12:00:00+01:00)
+[//]: # (DATE: 2016-07-01T09:00:00+01:00)
 [//]: # (TAGS: php, blog, symfony)
 
 I think the need to blog for a programmer is something inherent. It's a desire to spread knowledge, and create a post is something everyone can read. So it's a bit strange, at least to me, that there are not more blogging platforms targeted at developers. A quick Google search either results in Wordpress plugins, NodeJS HTML generators or CMS solutions.
