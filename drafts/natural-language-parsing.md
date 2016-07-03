@@ -23,7 +23,7 @@ Natural Language Parsing and Machine Learning can thus go hand in hand if you ar
 | What time is it? | `time` |
 | What is the time? | `time` |
 
-If the user would ask "Give me the time", we can check our training set can conclude that this input mostly resambles the `time` type. We didn't try to parse the input at all, all we did what see what looked most similair from our training set.
+If the user would ask "Give me the time", we can check our training set and can conclude that this input mostly resambles the `time` type. We didn't try to parse the input at all, all we did what see what looked most similair from our training set.
 
 And this is what makes Machine Learning really powerful if you only want to know the intent of a user. Of course you can extend this further when you know the intent, check for specific string to further understand the input. Like dates or places.
 
