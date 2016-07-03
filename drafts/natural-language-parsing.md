@@ -27,7 +27,7 @@ If the user would ask "Give me the time", we can check our training set and can 
 
 And this is what makes Machine Learning really powerful if you only want to know the intent of a user. Of course you can extend this further when you know the intent, check for specific string to further understand the input. Like dates or places.
 
-And in essence, the better your training set, the better you can match the user input to that training set. However, some limitations are that if the user inputs something that wasn't in the training set, you might get unexpected results. So usually it's a good thing to have a confidence level or some `none` type with random input.
+And in essence, the better your training set, the better you can match the user input to that training set. However, some limitations are that if the user inputs something that wasn't in the training set, you might get unexpected results. So usually it's a good thing to have a confidence level (e.g., how certain you are that it's a type) or some `none` type with random input.
 
 This method of Natural language parsing is the core of the [Microsoft Bot Framework][ms-bot-framework] and their [Luis][ms-luis] service. And for a shameless plug, I also made a [similair java package][yannickl88-natural-language] which uses Naive Bayes to geuss the user intent. 
 
