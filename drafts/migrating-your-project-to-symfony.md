@@ -102,7 +102,7 @@ A simple way of doing so is injecting the service container into some static cla
 A simple implementation would look like:
 ```php
 <?php
-namespace LegacyBundle\Controller;
+namespace LegacyBundle\Compatibility;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
