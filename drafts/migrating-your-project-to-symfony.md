@@ -7,13 +7,13 @@ So, what are your options of migrating to Symfony? Well you could try to 'big ba
 But what if your project is too big? Well there is another way, which allows for a more gradual replacement of the old code. This is running both Symfony and your old one at the same time, using a fallback method and it is a lot easier than you might think.
 
 ## Setup
-So, what do we mean with a fallback method? What we want to do is wrap Symfony around your existing project. If a route cannot be matched by Symfony, we want to fallback onto the old framework.
+So, what do I mean with a fallback method? What you want to do is wrap Symfony around your existing project. If a route cannot be matched by Symfony, the request should fallback onto the old framework.
 
 And that is it really. What I recommend is first making sure your old project works with composer if it doesn't already. This will help a lot, since Symfony is mainly distributed using composer.
 
-Secondly, we need to add Symfony to your exising project. You could just copy the standard distribution into your project, which should work fine, all you really need is the `AppKernel` and all its settings properly configured.
+Secondly, you will need to add Symfony to your exising project. You could just copy the standard distribution into your project, which should work fine, all you really need is the `AppKernel` and all its settings properly configured.
 
-Lastly, create a `LegacyBundle` and in it a single controller, which we shall aptly name `FallbackController`.
+Lastly, create a `LegacyBundle` and in it a single controller, which shall aptly be named `FallbackController`.
 
 ## The Fallback Controller
 So, what does the `FallbackController` do? This controller will handle all non-Symfony routes, basically things still left for porting.
@@ -50,7 +50,7 @@ services:
 ```
 > Note: For this example, the controller is a service, however, extending the `Symfony\Bundle\FrameworkBundle\Controller` also works but is not recommended. [Please refer to the cookbook why defining a controller as a service is better.][controller-as-a-service]
 
-Only thing left is actually configuring the fallback. We do this by creating an special route at the **bottom** of the routing configuration. So in your `routing.yml` make sure this is the last route:
+Only thing left is actually configuring the fallback. You do this by creating an special route at the **bottom** of the routing configuration. So in your `routing.yml` make sure this is the last route:
 ```yml
 fallback:
     path: /{path}
@@ -62,7 +62,7 @@ fallback:
 That is it, now any URL you will use will end up in the `FallbackController` and will trigger your old framework.
 
 ## Migration to Symfony
-We have routed all paths to your `FallbackController`, now what? Well, the routing configuration actually has priority build in. This means that routes defined before the fallback will have a higher priority. Thus, new controllers in your `AppBundle` (or any other bundle) can be matched by defining the following **above** the fallback:
+You now have routed all paths to your `FallbackController`, now what? Well, the routing configuration actually has priority build in. This means that routes defined before the fallback will have a higher priority. Thus, new controllers in your `AppBundle` (or any other bundle) can be matched by defining the following **above** the fallback:
 ```yml
 app:
     resource: "@AppBundle/Controller/"
