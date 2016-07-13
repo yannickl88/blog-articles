@@ -8,9 +8,9 @@ So, what are your options of migrating to Symfony? Well you could try the 'big b
 But what if your project is too big or you want a more graceful way of migrating? Well there is another way, which allows for a more gradual replacement of the old code. This is running both Symfony and your old project at the same time using a fallback method, and it is a lot easier than you might think.
 
 ## Setup
-So, what do I mean with a fallback method? What you want to do is wrap Symfony around your existing project. If a route cannot be matched by Symfony, the request should fallback onto the old framework.
+So, what do I mean with a fallback method? The gist of it is that you wrap Symfony around your existing project, if a route cannot be matched by Symfony that request should fallback onto the old framework.
 
-And that is it really. What I recommend is first making sure your old project works with composer if it doesn't already. This will help a lot, since Symfony is mainly distributed using composer.
+First of all, make sure your project is ready for Symfony. I recommend setting up composer to work with your old project, if it doesn't already. This will help a lot, since Symfony is mainly distributed using composer and keeping it up to date will save you a lot of trouble.
 
 Secondly, you will need to add Symfony to your existing project. You could just copy the standard distribution into your project, which should work fine, all you really need is the `AppKernel` and all its settings properly configured.
 
