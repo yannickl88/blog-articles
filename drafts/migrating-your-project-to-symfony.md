@@ -156,7 +156,7 @@ class Container
 ```
 Simply call `Container::init()` in the `FallbackController` to make sure your wrapper works in your old code. In your old code you can get services using `Container::get('doctrine.orm.entity_manager')`.
 
-And that is it, a simple way to gradually migrate to Symfony. If you are migrating from Symfony1 to Symfony, you might be interested in [hostnet/hnDependencyInjectionPlugin][hn-dep-plugin]. This uses the same method I described but it a bit more features.
+And that is it, a simple way to gradually migrate to Symfony. If you are migrating from Symfony1 to Symfony, you might be interested in [hostnet/hnDependencyInjectionPlugin][hn-dep-plugin]. This uses the same method I described but with a bit more features which will help speed up the migration.
 
 [controller-as-a-service]: http://symfony.com/doc/current/cookbook/controller/service.html
 [symfony-slash-url]: http://symfony.com/doc/current/cookbook/routing/slash_in_parameter.html
