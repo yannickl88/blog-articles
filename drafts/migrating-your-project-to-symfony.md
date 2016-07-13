@@ -1,4 +1,5 @@
 [//]: # (TITLE: Migrating your project to Symfony)
+[//]: # (DATE: 2016-07-14T08:00:00+01:00)
 [//]: # (TAGS: symfony, php, migration, framework)
 
 From time to time I see people struggling with trying to port their existing site or web-app to Symfony. Their old framework architecture might not match that of Symfony, making porting your controllers not that easy. Other times, their data structure contained so much logic that it was impossible to simply replace with doctrine. Thus porting the project can seem like a daunting task.
