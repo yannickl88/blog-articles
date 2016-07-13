@@ -79,7 +79,7 @@ fallback:
 
 That is it, now any URL you will use will end up in the `FallbackController` and will trigger your old framework. The result would look something like this, you even have a symfony toolbar.
 
-![Symfony and Zend Framework](https://github.com/yannickl88/blog-articles/blob/master/img/fallback_zf.png)
+![Symfony and Zend Framework](https://github.com/yannickl88/blog-articles/raw/master/img/fallback_zf.png)
 
 ## Migration to Symfony
 You now have routed all paths to your `FallbackController`, now what? Well, the routing configuration actually has priority build in. This means that routes defined before the fallback will have a higher priority. Thus, new controllers in your `AppBundle` (or any other bundle) can be matched by defining the following **above** the fallback:
