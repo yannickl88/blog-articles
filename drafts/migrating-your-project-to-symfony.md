@@ -4,6 +4,7 @@
 From time to time I see people struggling with trying to port their existing site or web-app to Symfony. Their old framework architecture might not match that of Symfony, making porting your controllers not that easy. Other times, their data structure contained so much logic that it was impossible to simply replace with doctrine. Thus porting the project can seem like a daunting task.
 
 So, what are your options of migrating to Symfony? Well you could try the 'big bang' approach and just power through your project, porting all of it and then releasing it all at once. While I might not consider this the most optimal way, it does have its advantages. It's gives you a clean slate which allows for a fresh new design and fixing all the legacy stuff you had from the old framework.
+
 But what if your project is too big or you want a more graceful way of migrating? Well there is another way, which allows for a more gradual replacement of the old code. This is running both Symfony and your old one at the same time, using a fallback method and it is a lot easier than you might think.
 
 ## Setup
