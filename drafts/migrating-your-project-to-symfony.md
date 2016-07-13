@@ -77,7 +77,7 @@ fallback:
     requirements:
         path: .*
 ```
-> Note: the *path* has a special requirement of `.*`, which will match everything. This is important, [since by default symfony won't match the `/` in arguments][symfony-slash-url].
+> Note: the *path* has a special requirement of `.*`, which will match everything. This is important, [since by default symfony won't match the `/` in parameters][symfony-slash-url].
 
 That is it! Now any URL you will use will end up in the `FallbackController` and will trigger your old framework (Zend Framework in this case). For this example, the result would look something like this, you even have a symfony toolbar!
 
