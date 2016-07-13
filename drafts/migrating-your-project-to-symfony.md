@@ -5,7 +5,7 @@ From time to time I see people struggling with trying to port their existing sit
 
 So, what are your options of migrating to Symfony? Well you could try the 'big bang' approach and just power through your project, porting all of it and then releasing it all at once. While I might not consider this the most optimal way, it does have its advantages. It's gives you a clean slate which allows for a fresh new design and fixing all the legacy stuff you had from the old framework.
 
-But what if your project is too big or you want a more graceful way of migrating? Well there is another way, which allows for a more gradual replacement of the old code. This is running both Symfony and your old one at the same time, using a fallback method and it is a lot easier than you might think.
+But what if your project is too big or you want a more graceful way of migrating? Well there is another way, which allows for a more gradual replacement of the old code. This is running both Symfony and your old project at the same time using a fallback method, and it is a lot easier than you might think.
 
 ## Setup
 So, what do I mean with a fallback method? What you want to do is wrap Symfony around your existing project. If a route cannot be matched by Symfony, the request should fallback onto the old framework.
