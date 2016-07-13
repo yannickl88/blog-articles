@@ -65,8 +65,8 @@ Registering your service.
 services:
     legacy.controller.fallback:
         class: LegacyBundle\Controller\FallbackController
-    arguments:
-        - "%kernel.root_dir%/../public"
+        arguments:
+            - "%kernel.root_dir%/../public"
 ```
 > Note: For this example, the controller is a service, however, extending the `Symfony\Bundle\FrameworkBundle\Controller` also works but is not recommended. [Please refer to the cookbook why defining a controller as a service is better.][controller-as-a-service]
 
