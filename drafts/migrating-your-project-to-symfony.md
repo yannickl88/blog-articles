@@ -1,24 +1,24 @@
 [//]: # (TITLE: Migrating your project to Symfony)
 [//]: # (DATE: 2016-07-14T08:00:00+01:00)
-[//]: # (TAGS: symfony, php, migration, framework)
+[//]: # (TAGS: symfony, php, migration, framework, legacy)
 
-From time to time I see people struggling with trying to port their existing site or web-app to Symfony. Their old framework architecture might not match that of Symfony, making porting your controllers not that easy. Other times, their data structure contained so much logic that it was impossible to simply replace with doctrine. Thus porting the project can seem like a daunting task.
+From time to time I see people struggling with trying to port their existing site or web-app to Symfony. Their old framework architecture might not match that of Symfony, making porting their  controllers not that easy. Other times, their data structure contained so much logic that it was impossible to simply replace with a new ORM. Thus porting the project can seem like a daunting task.
 
 So, what are your options of migrating to Symfony? Well you could try the 'big bang' approach and just power through your project, porting all of it and then releasing it all at once. While I might not consider this the most optimal way, it does have its advantages. It's gives you a clean slate which allows for a fresh new design and fixing all the legacy stuff you had from the old framework.
 
 But what if your project is too big or you want a more graceful way of migrating? Well there is another way, which allows for a more gradual replacement of the old code. This is running both Symfony and your old project at the same time using a fallback method, and it is a lot easier than you might think.
 
 ## Setup
-So, what do I mean with a fallback method? The gist of it is that you wrap Symfony around your existing project, if a route cannot be matched by Symfony that request should fallback onto the old framework.
+So, what do I mean with a fallback method? What you want to do is wrap Symfony around your existing project. If a route cannot be matched by Symfony, the request should fall back onto the old framework.
 
-First of all, make sure your project is ready for Symfony. I recommend setting up composer to work with your old project, if it doesn't already. This will help a lot, since Symfony is mainly distributed using composer and keeping it up to date will save you a lot of trouble.
+And that is it really. What I recommend is first making sure your old project works with composer if it doesn't already. This will help a lot, since Symfony is mainly distributed using composer and keeping it up to date will save you a lot of trouble.
 
-Secondly, you will need to add Symfony to your existing project. You could just copy the standard distribution into your project, which should work fine, all you really need is the `AppKernel` and all its settings properly configured.
+Secondly, you will need to add Symfony to your existing project. You could just copy the standard distribution into your project, which should work fine. All you really need is the `AppKernel` and all its settings properly configured.
 
 Lastly, create a `LegacyBundle` and in it a single controller, which shall aptly be named `FallbackController`.
 
 ## The Fallback Controller
-So, what does the `FallbackController` do? This controller will handle all non-Symfony routes, basically things still left for porting. For this example the idea is to let Symfony fallback onto Zend framework. An example setup would be:
+So, what does the `FallbackController` do? This controller will handle all non-Symfony routes, basically things still left for porting. For this example the idea is to let Symfony fall back onto Zend framework. An example setup could be:
 ```php
 <?php
 namespace LegacyBundle\Controller;
@@ -60,7 +60,7 @@ class FallbackController
     }
 }
 ```
-> Note: the content of the `FallbackController::fallback` is essencially the [Zend Framework index.php][zf-index-php], but with some small changes.
+> Note: the content of the `FallbackController::fallback` is essencially the [Zend Framework 3 index.php][zf-index-php], but with some small changes.
 
 Registering your service in the [service container][controller-as-a-service]. 
 ```yml
@@ -103,9 +103,9 @@ This setup allows for porting each page separately, allowing for a more gradual 
 
 ## Creating Compatibility
 ### Routing to old pages
-In some cases you might need to link to a page that is not yet in one of the Symfony controllers but in the old framework. You could just hardcoded the URL, but you will lose all the advantages the `Router` give you. What you could do instead is defined extra dummy routes which do allow for routing but will always end up in the fallback. 
+In some cases you might need to link to a page that is not yet in one of the Symfony controllers but in the old framework. You could just hardcode the URL, but you will lose all the advantages the `Router` give you. What you could do instead is define extra dummy routes which do allow for routing but will always end up in the fallback. 
 
-You could do this by creating a `routing.yml` in your `LegacyBundle` and include it in the Symfony routing. If you add it at the very bottom of your routing configuration, you do not actually need to assign a controller to it, since they will never match (the fallback will always have a higher priority over them since it is defined before the other routes).
+You can do this by creating a `routing.yml` in your `LegacyBundle` and include it in the Symfony routing. If you add it at the very bottom of your routing configuration, you do not actually need to assign a controller to it, since they will never match (the fallback will always have a higher priority over them since it's defined before the other routes).
 ```yml
 app:
     # ...
@@ -125,11 +125,11 @@ legacy.old-page:
 In your code you can now call `$router->generate('/some/legacy/url', [foo => 'bar'])` which will result in `/some/legacy/url/bar`.
 
 ### Forward compatibility
-Something to consider is that you might be able to share code so easily between the old project and Symfony. Having duplicate code is always discouraged. What you could do is make your new code backwards compatible, but once you have ported your project, you still have a lot of old code that you need to clean up. A better solution would be to expose the service container to your legacy code, this will make your old code [forward compatible][wiki-forward-compat] and is helpful for migrating code.
+Something to consider is that you might be able to share code so easily between the old project and Symfony. Having duplicate code is always discouraged. What you could do is make your new code backwards compatible, but once you have ported your project, you still have a lot of old code that you need to clean up. A better solution would be to expose the service container to your legacy code, this will make your old code [forward compatible][wiki-forward-compat] and is helpful when migrating code.
 
 A simple way of doing so is injecting the service container into some static class in your fallback action. This will ensure the class is useless in your new code (forcing you to do it right) and will still allow your old code to access the service container.
 
-A simple implementation would look like:
+A simple implementation could look like:
 ```php
 <?php
 namespace LegacyBundle\Compatibility;
@@ -145,19 +145,19 @@ class Container
           self::$container = $container;
       }
       
-      public function get($id)
+      public function get($id, $invalidBehavior = ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE)
       {
           if (!self::$container instanceof ContainerInterface) {
               throw new \LogicException('Container not initialized!');
           }
           
-          return self::$container->get($id);
+          return self::$container->get($id, $invalidBehavior);
       }
 }
 ```
 Simply call `Container::init()` in the `FallbackController` to make sure your wrapper works in your old code. In your old code you can get services using `Container::get('doctrine.orm.entity_manager')`.
 
-And that is it, a simple way to gradually migrate to Symfony. If you are migrating from Symfony1 to Symfony, you might be interested in [hostnet/hnDependencyInjectionPlugin][hn-dep-plugin]. This uses the same method I described but with a bit more features which will help speed up the migration.
+And that's it, a simple way to gradually migrate to Symfony. If you are migrating from Symfony1 to Symfony, you might be interested in [hostnet/hnDependencyInjectionPlugin][hn-dep-plugin]. This uses the same method I described but has a bit more features.
 
 [controller-as-a-service]: http://symfony.com/doc/current/cookbook/controller/service.html
 [symfony-slash-url]: http://symfony.com/doc/current/cookbook/routing/slash_in_parameter.html
