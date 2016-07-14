@@ -140,12 +140,12 @@ class Container
 {
       private static $container;
 
-      public function init(ContainerInterface $container)
+      public static function init(ContainerInterface $container)
       {
           self::$container = $container;
       }
       
-      public function get($id, $invalidBehavior = ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE)
+      public static function get($id, $invalidBehavior = ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE)
       {
           if (!self::$container instanceof ContainerInterface) {
               throw new \LogicException('Container not initialized!');
