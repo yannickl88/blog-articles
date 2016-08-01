@@ -55,7 +55,7 @@ class Model
 	}
 }
 ```
-At first glace you might think the `Model` class has only two dependencies. One obvious is the `LoggerInterface`, you need this in order to initialize it. The second is the `Connection`, on which `::query()` is staticly called. But there are three more: `Hydration` for the type parameter, `EntityTable` for the table name and `EntityFields` for the identifier field.
+At first glace you might think the `Model` class has only two dependencies. One obvious is the `LoggerInterface`, you need this in order to initialize it. The second is the `Connection`, on which `::query()` is staticly called. For the more observent, the use statements reveal that there are three more: `Hydration` for the type parameter, `EntityTable` for the table name and `EntityFields` for the identifier field.
 
 But this is not all, if you were to simply initialize this class and call `::find()` you might find that `Connection::query()` might not work since you never actually initialized the database connection. This creates a __hidden__ dependecy on whatever the `Connection` needs to properly execute the `::query()` method. 'Fine' you must think, 'I will never use this without a database connection, what is the problem?'.
 
