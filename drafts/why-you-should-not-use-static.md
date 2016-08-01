@@ -85,7 +85,7 @@ class SomeOtherClass
 		},
 	];
 	
-	private function visit($i, Context $c)
+	public function visit($i, Context $c)
 	{
 		foreach (self::$visitors as $v) {
 			$v($i, $c);
