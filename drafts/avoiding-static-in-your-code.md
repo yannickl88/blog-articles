@@ -153,7 +153,7 @@ I am sure there are other use cases which do not break unit testing, but these a
 [wiki-mvc]: https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
 [wiki-factory]: https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)
 [wiki-visitor]: https://en.wikipedia.org/wiki/Visitor_pattern
-[wiki-singelton]: https://en.wikipedia.org/wiki/Singleton_pattern
+[wiki-singleton]: https://en.wikipedia.org/wiki/Singleton_pattern
 [laravel-quickstart]: https://laravel.com/docs/5.2/routing#basic-routing
 [phpunit]: https://phpunit.de/
 [doctrine-invalid-argument-exception]: https://github.com/doctrine/common/blob/master/lib/Doctrine/Common/Proxy/Exception/InvalidArgumentException.php
