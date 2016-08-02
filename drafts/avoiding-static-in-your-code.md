@@ -7,17 +7,17 @@ For anyone not familiar with the `static` keyword in languages, it is in essence
 As a new programmer that has been introduced to the `static` keyword, that might seems very useful. I do not blame you for thinking so, since I did so too not all that long ago. As you write more and more code, you learn and improve and your coding matures. You start to form new ideas as your applications grow bigger and you maintain code that is slowly becoming legacy code. When you look back you will discover that defining things `static` might make things more difficult than they are worth.
 
 ## Singelton and sorts
-For anyone following a computer science bachelor you will undoubtedly have had a course or lesson on software patterns as did I in my bachelor courses. We had the classics, like [Model-View-Controller][wiki-mvc], [Factory][wiki-factory], [Visitor][wiki-visitor] and of course [Singelton][wiki-singelton]. The latter one I always found most interesting. For those unaware, a simple example would be:
+For anyone following a computer science bachelor you will undoubtedly have had a course or lesson on software patterns as did I in my bachelor courses. We had the classics, like [Model-View-Controller][wiki-mvc], [Factory][wiki-factory], [Visitor][wiki-visitor] and of course [Singleton][wiki-singleton]. The latter one I always found most interesting. For those unaware, a simple example would be:
 ```php
 <?php
-class Singelton
+class Singleton
 {
     private static $instance;
     
     public static function getInstance()
     {
-        if (!self::$instance instanceof Singelton) {
-            self::$instance = new self();
+        if (!self::$instance instanceof Singleton) {
+            self::$instance = new static();
         }
         
         return self::$instance;
@@ -154,6 +154,6 @@ I am sure there are other use cases which do not break unit testing, but these a
 [wiki-factory]: https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)
 [wiki-visitor]: https://en.wikipedia.org/wiki/Visitor_pattern
 [wiki-singelton]: https://en.wikipedia.org/wiki/Singleton_pattern
-[laravel-quickstart]: https://laravel.com/docs/5.2/quickstart
+[laravel-quickstart]: https://laravel.com/docs/5.2/routing#basic-routing
 [phpunit]: https://phpunit.de/
 [doctrine-invalid-argument-exception]: https://github.com/doctrine/common/blob/master/lib/Doctrine/Common/Proxy/Exception/InvalidArgumentException.php
