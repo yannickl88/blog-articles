@@ -46,21 +46,21 @@ use Psr\LoggerInterface
 class Model
 {
     private $logger;
-	
-	public function __construct(LoggerInterface $logger)
+    
+    public function __construct(LoggerInterface $logger)
     {
-		$this->logger = $logger;
-	}
-	
-	public function find($id, $type = Hydration::ARRAY)
-	{
-		return Connection::query(sprintf(
-			'SELECT * FROM %s WHERE %s = %d',
-			EntityTable::NAME,
-			EntityFields::IDENTIFIER,
-			$id
-		), $type);
-	}
+        $this->logger = $logger;
+    }
+    
+    public function find($id, $type = Hydration::ARRAY)
+    {
+        return Connection::query(sprintf(
+            'SELECT * FROM %s WHERE %s = %d',
+            EntityTable::NAME,
+            EntityFields::IDENTIFIER,
+            $id
+        ), $type);
+    }
 }
 ```
 At first glance you might think the `Model` class has only two dependencies. One obvious is the `LoggerInterface`, you need this in order to initialize it. The second is the `Connection`, on which `::query()` is statically called. For the more observant, the use statements reveal that there are three more: `Hydration` for the type parameter, `EntityTable` for the table name and `EntityFields` for the identifier field.
@@ -85,33 +85,33 @@ Well no, there are valid use cases. One is that if you have a list of pre define
 class SomeOtherClass
 {
     private static $visitors = [
-		'foo' => function ($i, Context $c) {
-			// ...
-		},
-		'bar' => function ($i, Context $c) {
-			// ...
-		},
-	];
-	
-	public function visit($i, Context $c)
-	{
-		foreach (self::$visitors as $v) {
-			$v($i, $c);
-		}
-	}
+        'foo' => function ($i, Context $c) {
+            // ...
+        },
+        'bar' => function ($i, Context $c) {
+            // ...
+        },
+    ];
+    
+    public function visit($i, Context $c)
+    {
+        foreach (self::$visitors as $v) {
+            $v($i, $c);
+        }
+    }
 }
 ```
 In this example everything is contained within the class. No external static calls to worry about and it's a small optimization in memory usage for something that will not change.
 
-Other cases are utility methods which do not require outside dependencies, like a slugify method. Like so:
+Other cases are utility methods which do not require outside dependencies, for instance a slugify method.
 ```php
 <?php
 class Util
 {
-	public static function slug($string)
-	{
-		return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '_', $string)));
-	}
+    public static function slug($string)
+    {
+        return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '_', $string)));
+    }
 }
 ```
 The `slug` method only does a very well defined behavior. It is easy to take the behavior into account in unit tests and I would not be too worried when I see this call.
