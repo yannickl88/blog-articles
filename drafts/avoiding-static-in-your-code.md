@@ -1,3 +1,7 @@
+[//]: # (TITLE: Avoiding static in your code)
+[//]: # (DATE: 2016-08-05T09:00:00+01:00)
+[//]: # (TAGS: php, static, phpunit)
+
 For anyone not familiar with the `static` keyword in languages, I suggest reading up on it a bit and then come back here to know when you should be using it. In essence, defining things as static will define something on class level instead of instance level, so you can access the same referece from anywhere. And as a new programmer that might seems very useful. I do not blame you for I did do too not all that long ago. But as you write more code, you learn. Learn that defining things `static` might make things more difficult than they are worth.
 
 ## Singelton and sorts
