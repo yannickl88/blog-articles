@@ -67,7 +67,7 @@ At first glance you might think the `Model` class has only two dependencies. One
 
 But this is not all, if you were to simply initialize this class and call `::find()` you might find that `Connection::query()` might not work since you never actually initialized the database connection. This creates a __hidden__ dependency on whatever the `Connection` needs to properly execute the `::query()` method. 'Fine' you must think, 'I will never use this without a database connection, what is the problem?'.
 
-Every heard of unit testing?
+Ever heard of unit testing?
 
 ## Unit testing
 As you write more and more complex code you will come to a point that you cannot judge the impact of a change. It would have been useful if you had a way to test all your code and see if it still behaves the same as it did before.
