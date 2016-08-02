@@ -2,7 +2,7 @@
 [//]: # (DATE: 2016-08-05T09:00:00+01:00)
 [//]: # (TAGS: php, static, phpunit)
 
-For anyone not familiar with the `static` keyword in languages, it is in essence a way of defining things on class level instead of instance level. This allows you to access the same reference from anywhere anywhere in your code. 
+For anyone not familiar with the `static` keyword in languages, it is in essence a way of defining things on class level instead of instance level. This allows you to access the same reference from anywhere in your code. 
 
 As a new programmer that has been introduced to the `static` keyword, that might seems very useful. I do not blame you for thinking so, since I did so too not all that long ago. As you write more and more code, you learn and improve and your coding matures. You start to form new ideas as your applications grow bigger and you maintain code that is slowly becoming legacy code. When you look back you will discover that defining things `static` might make things more difficult than they are worth.
 
