@@ -74,7 +74,7 @@ As you write more and more complex code you will come to a point that you cannot
 
 This is the problem (or challenge) most programmer at some point reach. This is usually the moment you will start looking into unit testings. With `php` you will most likely end up with `PHPUnit`. _"PHPUnit is a programmer-oriented testing framework for PHP."_ [as phpunit.de describes itself][phpunit].
 
-Looking back at our previous example, static code is by definition hard to deal with in test. You cannot mock the called methods which means you will have to initialize the underlaying code. Which in turn might require you to setup a database connection and possibly fill the database with fixtures. When you find yourself doing this you are no longer unit testing, you are now integration testing or functional testing. This means that your test no longer covers a unit (Class or method) but a large chunk of your application.
+Looking back at our previous example, static code is by definition hard to deal with in tests. You cannot mock the called methods which means you will have to initialize the underlaying code. Which in turn might require you to setup a database connection and possibly fill the database with fixtures. When you find yourself doing this you are no longer unit testing, you are now integration testing or functional testing. This means that your test no longer covers a unit (Class or method) but a large chunk of your application.
 
 I think you might start to see how static is not sure useful anymore. From a unit-test perspective, a static is like a private: part of the code you are testing.
 
