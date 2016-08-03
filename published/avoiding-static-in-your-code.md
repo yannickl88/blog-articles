@@ -27,7 +27,7 @@ class Singleton
     {}
 }
 ```
-What this bit of code allows you to statically call your class to get an instance, this will always be the same instance. So any state that is stored in the instance can be accessible from everywhere.
+What this bit of code allows you to do is to statically call your class to get an instance, this will always be the same instance. So any state that is stored in the instance can be accessible from everywhere.
 
 As a new programmer, this was so elegant and simple; you can make your database connection accessible from everywhere, allowing easy access to your ORM or the likes. Or you can create a cool routing system which can register routes from everywhere, [something Laravel does][laravel-quickstart].
 
