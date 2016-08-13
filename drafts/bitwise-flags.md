@@ -1,3 +1,7 @@
+[//]: # (TITLE: Bitwise flags)
+[//]: # (DATE: 2016-08-16T08:00:00+01:00)
+[//]: # (TAGS: php, bitwise, binary)
+
 The naive way of storing many boolean options (in a database) is to create for each option a field and storing a `0` when it is `false` and `1` when it is `true`. Consider the following example, something some of you might have written in some variant.
 
 ```php
