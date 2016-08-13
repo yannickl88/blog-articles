@@ -83,14 +83,14 @@ First off, the `|` operator compares two numbers binary place by place and when 
 | *Result* |          |          |          |          | 
 | `1 | 8`: | 1        | 0        | 0        | 1        | 
 
-Secondly the `&` operator, you should see the pattern by now. The `&` operator compares two numbers binary place by place and only when both are `1` it will result in an `1`. This is very similar to the `&&` operator (logical AND) which works on booleans. For this example checking if `10` (from the previous example) actually contains `OPTION_4` can be written as the table:
+Secondly the `&` operator, you should see the pattern by now. The `&` operator compares two numbers binary place by place and only when both are `1` it will result in an `1`. This is very similar to the `&&` operator (logical AND) which works on booleans. For this example checking if `9` (from the previous example) actually contains `OPTION_4` can be written as the table:
 
-|           | OPTION_4 | OPTION_3 | OPTION_2 | OPTION_1 |
-|-----------|:--------:|:--------:|:--------:|:--------:|
-| `10`:     | 1        | 0        | 0        | 1        | 
-| `8`:      | 1        | 0        | 0        | 0        | 
-| *Result*  |          |          |          |          | 
-| `10 & 8`: | 1        | 0        | 0        | 0        | 
+|          | OPTION_4 | OPTION_3 | OPTION_2 | OPTION_1 |
+|----------|:--------:|:--------:|:--------:|:--------:|
+| `9`:     | 1        | 0        | 0        | 1        | 
+| `8`:     | 1        | 0        | 0        | 0        | 
+| *Result* |          |          |          |          | 
+| `9 & 8`: | 1        | 0        | 0        | 0        | 
 
 Here you can see that the result will also be the value you are comparing against and if no present will result in `0`. Also, it is possible to check multiple fields as once using the `&` and will return `> 0` if either one was present of the same as what you are checking if all were present.
 
