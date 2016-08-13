@@ -94,7 +94,7 @@ Secondly the `&` operator, you should see the pattern by now. The `&` operator c
 
 Here you can see that the result will also be the value you are comparing against and if no present will result in `0`. Also, it is possible to check multiple fields as once using the `&` and will return `> 0` if either one was present of the same as what you are checking if all were present.
 
-Finally another operator that can be useful is the `~` operator which is the negation. This inverts a binary value which results in all bits flipped. For instance `~0110` will result in `1001`. This is useful to create expression like *everything except for `OPTION_3`* which would look like `~OPTION_3` which is equivalent to `OPTION_1 | OPTION_2 | OPTION_4`.
+Finally another operator that can be useful is the `~` operator which is the negation. This inverts a binary value which results in all bits flipped. For instance `~0110` will result in `1001`. This is useful to create expression like *everything except for `OPTION_3`* which would look like `~OPTION_3` and is equivalent to `OPTION_1 | OPTION_2 | OPTION_4`.
 
 And that is it really, the same examples can be applied for 32bit integers and allows you to store a lot more information in a single field then you might first have thought. 
 
