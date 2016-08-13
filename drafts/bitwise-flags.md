@@ -43,11 +43,11 @@ In order to check if an option was set you can use the bitwise operator `&`. Thi
 ```php
 $config = Config::OPTION_1 | Config::OPTION_4 | Config::OPTION_5;
 
-var_dump(($config & Config::OPTION_1) == Config::OPTION_1)); // true
-var_dump(($config & Config::OPTION_2) == Config::OPTION_2)); // false
-var_dump(($config & Config::OPTION_3) == Config::OPTION_3)); // false
-var_dump(($config & Config::OPTION_4) == Config::OPTION_4)); // true
-var_dump(($config & Config::OPTION_5) == Config::OPTION_5)); // true
+($config & Config::OPTION_1) == Config::OPTION_1; // true
+($config & Config::OPTION_2) == Config::OPTION_2; // false
+($config & Config::OPTION_3) == Config::OPTION_3; // false
+($config & Config::OPTION_4) == Config::OPTION_4; // true
+($config & Config::OPTION_5) == Config::OPTION_5; // true
 ```
 
 And that is how you use bitwise to operators to store multiple options into one variable. But I hear you ask: How does this work?
