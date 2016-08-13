@@ -1,4 +1,4 @@
-The naive way of storing this (in a database) is to create for each option a field and storing a `0` when it is `false` and `1` when it was `true`. Consider the following example, something some of you might have written in some variant.
+The naive way of storing many boolean options (in a database) is to create for each option a field and storing a `0` when it is `false` and `1` when it is `true`. Consider the following example, something some of you might have written in some variant.
 
 ```php
 <?php
@@ -13,9 +13,9 @@ class Config
 }
 ```
 
-Which of course works, bit adding options will require a new field, which might require creating a compatibility layer for your old data. Moreover, checking multiple options at once requires to expressions. There is an easier way to do this and it's even more efficient at checking fields.
+Which of course works, bit adding options will require a new field, which might require creating a compatibility layer for your old data. There is an easier way to do this and it's even more efficient at checking fields.
 
-This brings me to an old topic which I have to explain to all the new people at some point and even once explained not everybody understand how it actually works. So in this post I'm going to explain how to use bitwise operators and how it works.
+This brings me to an old topic which I have to explain to all the new people at some point and even once explained not everybody understands how it actually works. So in this post I'm going to explain how to use bitwise operators and how it works internally.
 
 ## Setup
 Looking back at our example, a couple of changes need to be made. Instead of booleans and fields, the `Config` class will contain constants. Each constant will be a value fits our formula `2^x` as long as `x` is positive. So our first constant will be `2^0` which is `1`. The second `2^1` is `2`. The third `2^2` is `4` and so on.
