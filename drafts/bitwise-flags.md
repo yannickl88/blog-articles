@@ -50,3 +50,19 @@ var_dump(($config & Config::OPTION_5) == Config::OPTION_5)); // true
 
 And that is how you use bitwise to operators to store multiple options into one variable. But I hear you ask: How does this work?
 ## How it works
+As I hinted on, the `&` and `|` operators do not work on the value but on the binary representation of the value. To fully understand how it works you will need to know how integers are stored in memory. First of all, binary works with `0` and `1` and each value can be represented using these two values. For instance: `42` is `00101010` in binary using 8 bits.
+
+We can also write this as a table:
+
+|     | 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
+|-----|:---:|:--:|:--:|:--:|:-:|:-:|:-:|:-:|
+| 42: | 0   | 0  | 1  | 0  | 1 | 0 | 1 | 0 |
+
+When we sum every value that has a `1` we will end up with : `32 + 8 + 2 = 42`. 
+
+As you might have noticed, the header row of the table corresponds with the `2^x` values defined in the config. This is exactly how it works, indead of seeing easy `0` and `1` as a value we see them as `true` or `false` for the given place. So if we re-write the table to use the constants we get:
+
+|     | OPTION_8 | OPTION_7 | OPTION_6 | OPTION_5 | OPTION_4 | OPTION_3 | OPTION_2 | OPTION_1 |
+|-----|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| 42: | 0        | 0        | 1        | 0        | 1        | 0        | 1        | 0        |
+
