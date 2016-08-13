@@ -17,7 +17,7 @@ class Config
 }
 ```
 
-Which of course works, bit adding options will require a new field, which might require creating a compatibility layer for your old data. There is an easier way to do this and it's even more efficient at checking fields.
+Which of course works, but adding options will require a new field, which might require creating a compatibility layer for your old data. There is an easier way to do this and it's even more efficient at checking fields.
 
 This brings me to an old topic which I have to explain to all the new people at some point and even once explained not everybody understands how it actually works. So in this post I'm going to explain how to use bitwise operators and how it works internally.
 
