@@ -1,5 +1,5 @@
-[//]: # (TITLE: Bitwise flags)
-[//]: # (DATE: 2016-08-16T08:00:00+01:00)
+[//]: # (TITLE: Using bitwise instead of booleans)
+[//]: # (DATE: 2016-08-15T08:00:00+01:00)
 [//]: # (TAGS: php, bitwise, binary)
 
 The naive way of storing many boolean options (in a database) is to create for each option a field and storing a `0` when it is `false` and `1` when it is `true`. Consider the following example, something some of you might have written in some variant.
@@ -15,6 +15,13 @@ class Config
     public $option5 = false;
     // ...
 }
+
+$config = new Config();
+$config->option1 = true;
+$config->option4 = true;
+$config->option5 = true;
+
+$object->configure($config);
 ```
 
 Which of course works, but adding options will require a new field, which might require creating a compatibility layer for your old data. There is an easier way to do this and it's even more efficient at checking fields.
@@ -39,7 +46,12 @@ class Config
 ```
 > Note here that `2^30` is the maximum since any larger values with exceed the `PHP_INT_MAX`. So you cannot have more than 30 options on a 32bit version of php.
 
-That is it, now you can start using bitwise operations on you options.
+That is it, now you can start using bitwise operations on you options. You can pass them along like so, which is a lot easier than before:
+```php
+$object->configure(Config::OPTION_1 | Config::OPTION_4 | Config::OPTION_5);
+```
+This allows you to store all your options in one field, which can save a lot of space. Moreover, most [database engines support bitwise operations][mysql-bit-funcitons] out of the box.
+
 ## Usage
 Using the constants in the `Config` you can add them to each other using the bitwise operator `|`. What this does it add two values in binary (the specific I will explain in a bit). Thus if you want to 'enable' two options all you have to do is: `Config::OPTION_1 | Config::OPTION_4`. This will return a value with both options turned on and the others off. Simply add more options you want to turn on by adding an extra like so: `Config::OPTION_1 | Config::OPTION_4 | Config::OPTION_5`.
 
@@ -105,6 +117,6 @@ Other examples are the [Doctrine metadata association types][doctrine-associatio
 
 Do you have another example? Let me know in the comments!
 
-
 [php-error-flags]: http://php.net/manual/en/errorfunc.constants.php
 [doctrine-association-fields]: http://www.doctrine-project.org/api/orm/2.5/class-Doctrine.ORM.Mapping.ClassMetadataInfo.html#ONE_TO_ONE
+[mysql-bit-funcitons]: http://dev.mysql.com/doc/refman/5.7/en/bit-functions.html
