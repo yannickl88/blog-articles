@@ -110,6 +110,8 @@ Finally another operator that can be useful is the `~` operator which is the neg
 
 And that is it really, the same examples can be applied for 32bit integers and allows you to store a lot more information in a single field then you might first have thought. 
 
+> Note: there is also the `^` operator (Logical XOR). It behaves almost the same as the `|` but returnes `0` when both are  `1`, however, I have found little use for it myself.
+
 ## Real world examples
 So who uses this stuff? Well the most obvious example is the [PHP error reporting flags][php-error-flags] which are stored as bitwise flags. These can be manipulated to get the exact error reporting you would like.
 
