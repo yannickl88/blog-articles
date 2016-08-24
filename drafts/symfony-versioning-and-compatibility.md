@@ -18,7 +18,7 @@ Using semantic versioning means that you can tell what the impact of the upgrade
 ## Long-Term-Support (LTS) releases
 Besides normal versions, most software also have Long-Term-Support (LTS) releases. These are usually a specific version marked as LTS. Think of [Ubuntu][ubuntu-lts] or [Node.js][nodejs-lts]. These are special releases which form the basis for a long support period. This means it will receive patches for bugs and security fixes for a long time, but no more added features. In an enterprise setting these versions are preferable since they are the most stable. This is because they give a certain guarantee they will work for the foreseeable future.
 
-LTS releases are usually created and maintained as fork of the project along side of it. If there is a fix in the LTS, this is ported to the newer versions if that bug is also present there. The Symfony projects uses this strategy for their LTS releases.
+LTS releases are usually created and maintained as fork of the project alongside of it. If there is a fix in the LTS, this is ported to the newer versions if that bug is also present there. The Symfony projects uses this strategy for their LTS releases.
 
 ## Symfony releases and LTS versions
 To quote the [Symfony docs][symfony-lts]:
