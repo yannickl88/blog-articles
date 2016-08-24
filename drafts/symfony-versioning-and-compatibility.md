@@ -45,7 +45,7 @@ My reasoning is that all fixes done in the LTS are merged into newer releases if
 
 Moreover, Symfony is a framework, not an application or operating system. Whatever you made with Symfony, you are most likely continuing to develop and maintain. So sticking to an LTS release will prevent you from using the newer features. This seems to me the opposite of continues development and something you want to avoid.
 
-So, when use an LTS? If you know your application is end of life and you only want to benefit of the security patches. Sticking with an LTS release might be your best option. You can still have a long support period with little effort. Any other situation and you are better off with the most recent release.
+So, when use an LTS? If you know your application is end of life and you only want to benefit from the security patches. Sticking with an LTS release might be your best option. You can still have a long support period with little effort. Any other situation and you are better off with the most recent release.
 
 [semver]: http://semver.org/
 [composer-caret]: https://getcomposer.org/doc/articles/versions.md#caret
