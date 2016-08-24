@@ -45,7 +45,7 @@ I recommend always using the latest release if you are working on a project. Doi
 
 My reasoning is that all fixes done in the LTS are merged into newer releases if the issue is present. Moreover, the LTS will reach its end of life at some point at which you need to upgrade anyhow. Upgrading earlier will help since not a whole lot is changed compared to the LTS appart from the BC layer. Also, you need to consider that there is two years between LTS releases. If you wait, you will need to do a lot of catching up when you decide to upgrade. The flipside is that new feature might have security vulnerabilities the LTS doesnt have. This is a common reason to use LTS releases. However, to me it does not weigh enough to justify it.
 
-Moreover, Symfony is a framework, not an application or operating system. Whatever you made with Symfony, you are most likely continuing to develop and maintain. So sticking to an LTS release will prevent you from using the newer features. This seems to me the opposite of continues development and something you want to avoid.
+Also consider that Symfony is a framework, not an application or operating system. Whatever you made with Symfony, you are most likely continuing to develop and maintain. So sticking to an LTS release will prevent you from using the newer features. This seems to me the opposite of continues development and something you want to avoid.
 
 So, when use an LTS? If you know your application is end of life and you only want to benefit from the security patches. Sticking with an LTS release might be your best option. You can still have a long support period with little effort. Any other situation and you are better off with the most recent release.
 
