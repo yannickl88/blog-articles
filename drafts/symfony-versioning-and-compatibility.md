@@ -13,7 +13,7 @@ The next number is the minor version. An increment in minor versions (e.g., `3.0
 
 Finally, we have the major version. An increment in major versions (e.g., `2.8.9` to `3.0.0`) will mean a change in the public API. These are not backwards compatible and often removal of old code or re-writes of code.
 
-Using semantic versioning means that you can tell what the impact of the upgrade will be from the version number. Most likely, you will want to have an upper bound on the major version and a lower on the minor. For example, using the composer syntax that would be `>=3.1.0 <4.0.0` (or [shorthand][composer-caret] `^3.1`). This tells composer you want the API of the `3` major version with a feature from `3.1.0`.
+Using semantic versioning means that you can tell what the impact of the upgrade will be from the version number. For Symfony you will want to have an lower bound on the minor version. For example, using the composer syntax that would be `3.1.*`. This will prevent you from getting new features and possibly unwanted deprecations. For packages I would recommend a bit looser constraints to allow for maximal compatibility.
 
 ## Long-Term-Support (LTS) releases
 Besides normal versions, most software also have Long-Term-Support (LTS) releases. These are usually a specific version marked as LTS. Think of [Ubuntu][ubuntu-lts] or [Node.js][nodejs-lts]. These are special releases which form the basis for a long support period. This means it will receive patches for bugs and security fixes for a long time, but no more added features. In an enterprise setting these versions are preferable since they are the most stable. This is because they give a certain guarantee they will work for the foreseeable future.
