@@ -1,3 +1,7 @@
+[//]: # (TITLE: Symfony, versioning and compatibility)
+[//]: # (DATE: 2016-08-26T08:00:00+01:00)
+[//]: # (TAGS: symfony, composer, version, semver)
+
 Versioning is more than just slapping an incrementing number on your new release. A good version increase will let the users of your package know more than just that there is a new release. Most of us will understand that there is a difference between different major versions and different minor versions. However, using a proper versioning scheme can help people a lot with inferring what the impact of the upgrade will be.
 
 In this post will try to give some context to the Symfony versions and what you can expect of each increment, be it a patch, minor or major version bump.
