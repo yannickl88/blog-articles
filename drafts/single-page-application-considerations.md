@@ -2,7 +2,7 @@
 [//]: # (DATE: 2016-09-15T08:00:00+01:00)
 [//]: # (TAGS: spa, browser, javascript)
 
-With the rise in mobile computing power and faster browser the internet has seen some change. Where websites used to be simple pages we now have a rich user experiences and mobile apps. These complex sites are usually called Singe Page Applications (SPA). No longer are sites separate pages like a book but behave more like a desktop applications. They can better cater to their target audience because they provide more flexibility. Yet, all this comes at a cost. The question becomes: Is the web better for it? 
+With the rise in mobile computing power and faster browser the internet has seen some change. Where websites used to be simple pages we now have a rich user experiences and mobile apps. These complex sites are usually called Singe Page Applications (SPA). No longer are sites separate pages like a book but behave more like desktop applications. They can better cater to their target audience because they provide more flexibility. Yet, all this comes at a cost. The question becomes: Is the web better for it? 
 
 In this blog post I will try to motivate why you should reconsider when you are thinking of creating a SPA. Not everything should be a SPA and some serious downsides which you need to consider. 
 
