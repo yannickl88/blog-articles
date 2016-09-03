@@ -42,16 +42,19 @@ So again it comes down to selecting the right tool for the job. You can go for a
 I would like to provide some examples which showcase good and bad usages of SPA.
 
 ### http://knockout-spa.mybluemix.net/
-While I get the whole *eat your own dogfood* approch to the site. It seems very odd to use a SPA for your product showcase and documentation. Both cases you are serving static HTML. Moreover, Google has index nothing of the site, which seems as such a waste.
+
+While I get the whole *eat your own dog food* approach to the site. It seems odd to use a SPA for your product showcase and documentation. Both cases you are serving static HTML. Moreover, Google has index nothing of the site, which seems as such a waste.
 
 ### https://www.ryanair.com/
-That loading icon reveals all does it? The time until a page load is around 2 seconds, which is a lot it I am honest for a page that shows very little.
+
+That loading icon reveals all does it? The time until a page load is around 2 seconds, which is a lot it I am honest for a page that shows little.
 
 ### https://analytics.google.com/analytics/
-A useful tool that I do not mind waiting for. I do not think Analytics would benefit from SEO but they do provide deep linking using the URL hash. This is a good example of a tool or application instead of a website.
+A useful tool that I do not mind waiting for. I do not think Analytics would needs SEO but they do provide deep linking using the URL hash. This is a good example of a tool or application instead of a website.
 
 ### https://app.vwo.com/
-Again, while there is a loading screen here it makes sence to use this as a SPA. There is a lot of data to keep track of, doing page reloads would be a waste here.
+
+Again, while there is a loading screen here it makes sense to use this as a SPA. There is a lot of data to keep track of, doing page reloads would be a waste here.
 
 [gbooks-abraham]: https://books.google.nl/books?id=3_40fK8PW6QC&lpg=PP1&pg=PT21#v=onepage&q&f=false
 [spi-manifesto]: http://itsnat.sourceforge.net/php/spim/spi_manifesto_en.php
