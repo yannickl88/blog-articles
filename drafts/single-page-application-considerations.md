@@ -42,7 +42,7 @@ So again it comes down to selecting the right tool for the job. You can go for a
 I would like to provide some examples which showcase good and bad usages of SPA.
 
 ### http://knockout-spa.mybluemix.net/
-While I get the whole *eat your own dogfood* approch to the site. It seems very odd to use a SPA for your product showcase and documentation. Both cases you are serving static HTML.
+While I get the whole *eat your own dogfood* approch to the site. It seems very odd to use a SPA for your product showcase and documentation. Both cases you are serving static HTML. Moreover, Google has index nothing of the site, which seems as such a waste.
 
 ### https://www.ryanair.com/
 That loading icon reveals all does it? The time until a page load is around 2 seconds, which is a lot it I am honest for a page that shows very little.
