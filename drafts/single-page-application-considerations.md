@@ -38,6 +38,21 @@ Is there a place for SPAs on the web? Well yes of course, but like any choice yo
 
 So again it comes down to selecting the right tool for the job. You can go for a full SPA and accept the limitation to SEO and browser feature support. On the other end, you can go for the more traditional site where everything is handled server side. Yet, this spectrum is not binary, all sorts of solution fall somewhere between those. It is up to you as a developer to decide what to use and when.
 
+## Examples
+I would like to provide some examples which showcase good and bad usages of SPA.
+
+### http://knockout-spa.mybluemix.net/
+While I get the whole *eat your own dogfood* approch to the site. It seems very odd to use a SPA for your product showcase and documentation. Both cases you are serving static HTML.
+
+### https://www.ryanair.com/
+That loading icon reveals all does it? The time until a page load is around 2 seconds, which is a lot it I am honest for a page that shows very little.
+
+### https://analytics.google.com/analytics/
+A useful tool that I do not mind waiting for. I do not think Analytics would benefit from SEO but they do provide deep linking using the URL hash. This is a good example of a tool or application instead of a website.
+
+### https://app.vwo.com/
+Again, while there is a loading screen here it makes sence to use this as a SPA. There is a lot of data to keep track of, doing page reloads would be a waste here.
+
 [gbooks-abraham]: https://books.google.nl/books?id=3_40fK8PW6QC&lpg=PP1&pg=PT21#v=onepage&q&f=false
 [spi-manifesto]: http://itsnat.sourceforge.net/php/spim/spi_manifesto_en.php
 [stilkov-spa]: https://medium.com/@stilkov/why-i-hate-your-single-page-app-f08bb4ff9134#.m3skk8as1
