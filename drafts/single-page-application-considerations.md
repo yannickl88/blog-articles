@@ -43,7 +43,7 @@ I would like to provide some examples which showcase good and bad usages of SPA.
 
 ### http://knockout-spa.mybluemix.net/
 
-While I get the whole *eat your own dog food* approach to the site. It seems odd to use a SPA for your product showcase and documentation. Both cases you are serving static HTML. Moreover, Google has index nothing of the site, which seems as such a waste.
+While I get the whole *eat your own dog food* approach to the site. It seems odd to use a SPA for your product showcase and documentation. Both cases you are serving static HTML. Moreover, Google has indexed nothing of the site, which seems as such a waste.
 
 ### https://www.ryanair.com/
 
