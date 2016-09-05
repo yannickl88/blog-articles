@@ -1,6 +1,6 @@
 [//]: # (TITLE: Single Page Application considerations)
 [//]: # (DATE: 2016-09-05T08:00:00+01:00)
-[//]: # (TAGS: spa, browser, javascript)
+[//]: # (TAGS: spa, browser, javascript, seo)
 
 With the rise in mobile computing power and faster browser the internet has seen some change. Where websites used to be simple pages we now have a rich user experiences and mobile apps. These complex sites are usually called Singe Page Applications (SPA). No longer are sites separate pages like a book but behave more like desktop applications. They can better cater to their target audience because they provide more flexibility. Yet, all this comes at a cost. The question becomes: Is the web better for it? 
 
