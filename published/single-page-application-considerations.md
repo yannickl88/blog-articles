@@ -47,7 +47,7 @@ While I get the whole *eat your own dog food* approach to the site. It seems odd
 
 ### https://www.ryanair.com/
 
-That loading icon reveals all does it? The time until a page load is around 2 seconds, which is a lot it I am honest for a page that shows little.
+That loading icon reveals all doesn't it? The time until a page load is around 2 seconds, which is a lot it I am honest for a page that shows little.
 
 ### https://analytics.google.com/analytics/
 A useful tool that I do not mind waiting for. I do not think Analytics would needs SEO but they do provide deep linking using the URL hash. This is a good example of a tool or application instead of a website.
