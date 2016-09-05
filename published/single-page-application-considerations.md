@@ -56,6 +56,8 @@ A useful tool that I do not mind waiting for. I do not think Analytics would nee
 
 Again, while there is a loading screen here it makes sense to use this as a SPA. There is a lot of data to keep track of, doing page reloads would be a waste here.
 
+If you have some more examples of good or bad usage of SPAs, share them in the comments!
+
 [gbooks-abraham]: https://books.google.nl/books?id=3_40fK8PW6QC&lpg=PP1&pg=PT21#v=onepage&q&f=false
 [spi-manifesto]: http://itsnat.sourceforge.net/php/spim/spi_manifesto_en.php
 [stilkov-spa]: https://medium.com/@stilkov/why-i-hate-your-single-page-app-f08bb4ff9134#.m3skk8as1
