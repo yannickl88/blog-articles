@@ -1,0 +1,3 @@
+Machine learning is for me an interesting topic since it is slowly becomming integrated in everything. From smart thermostats, to cars and your phone. It almost seems like it is everywhere. But what is machine learning? It is way for a system to learn - usually patterns - and make predictions. This can be as simple as predecting relevent items to as complex as natural language parsing.
+
+With this blog post I will try to give an introduction into classification using the naive bayes algorithm using PHP. Hopefully by the end of it you might see some applications and even try to implement it yourself!
