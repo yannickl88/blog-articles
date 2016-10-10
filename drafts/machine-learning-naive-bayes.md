@@ -3,7 +3,7 @@ Machine learning is for me an interesting topic since it is slowly becomming ubi
 With this blog post I will try to give an introduction into classification using the [Naive Bayes classifier algorithm][naive bayes classifier]. It is an easy algorithm to implement while giving faily decent results. Hopefully by the end of it you might see some applications and even try to implement it yourself!
 
 ## Setup
-So, what do we want to achieve? Let's say I want to guess the subject of a question. Questions can be either about *time* or about *mood*. For instance, "How are you?" is a *mood* question, while "When are you there?" is a *time* question. So given a question, I want to system to return the subject of that question. For the types I will create an Enum-like class called `Type` and it will contain `MOOD` and `TIME` constants.
+So, what do we want to achieve? Let's say I want to guess the subject of a question. Questions can be either about *time* or about *mood*. For instance, `"How are you?"` is a *mood* question, while `"When are you there?"` is a *time* question. So given a question, I want to system to return the subject of that question. For the types I will create an Enum-like class called `Type` and it will contain `MOOD` and `TIME` constants.
 
 ```php
 class Type
@@ -34,6 +34,10 @@ Naive Bayes works by looking at a training set and seeing how close your input r
 | What time is it? | `time` |
 | What is the time? | `time` |
 
-If given the input `"Do you know the time?"` we can intuitively say that this input is more like the `time` strings than the `mood` strings. What this means that we want to compare the probability between `time` and `mood` and pick the one that is higher.
+If given the input `"What's the time?"` we can intuitively say that this input is more like the `time` strings than the `mood` strings. What this means that we want to compare the probability between `time` and `mood` and pick the one that is higher. We do this by looking at each word an calculating the likelyhood it is part of the type. We denote this by `p(string | Type)`. For the example, the likelyhood will be the frequency of that word. Thus `p(string | Type)` will be `(count($words[Type], string) + 1) / (count($words[Type]) + unique_count($words));`
+
+`P(mood) * p("what" | mood) * p("s" | mood) * p("time" | mood)`
+
+We can calculate the probability density of a given string by looking at the individual words. In the case of `"What's the time?"` will will want to know 
 
 [naive bayes classifier]: https://en.wikipedia.org/wiki/Naive_Bayes_classifier
