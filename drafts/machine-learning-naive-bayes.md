@@ -38,9 +38,6 @@ Naive Bayes works by looking at a training set and seeing how close your input r
 
 If given the input `"Symfony is great"` you can intuitively say that this input is a *Positive* statement. You usually do this by looking at what was perviously taught and make a desicion on that historical information. This is what Naive Bayes also does: it looks at the training set and sees which type is more likely. 
 
-### Learning
-
-
 ### Definitions
 Naive Bayes uses a bit of statistics to do this and to further explain this, a couple of definitions are needed. First of all, lets define the probability that the input is one of the given types also denoted with `P(Type)`. This is done by simply dividing the number of knows documents of a type, by the total of documents in the training set. A document is in this case an entry in the training set. For now, this method shall be called `totalP` and would look like so:
 ```php
@@ -71,33 +68,57 @@ function getWords($string)
     return preg_split('/\s+/', preg_replace('/[^A-Za-z0-9\s]/', '', strtolower($string)));
 }
 ```
-All set, now to put everything together!
+All set, time to start implementing!
+
+### Learning
+Before the algorithm can do anything, the training set needs to be added so the classifier has the historic information. In order to do the work, the classifier must know two things: which word occures how many times for each type, and how many documents are there per type. In this implementation I will store this in two arrays, one which will contain the word counts per type and one which contains the documents counts per type. All the other information I need can be aggregated from those arrays. An implemenation would look like:
+
+```php
+function learn($statement, $type)
+{
+    $words = $this->getWords($statement);
+
+    foreach ($words as $word) {
+        if (!isset($this->words[$type][$word])) {
+            $this->words[$type][$word] = 0;
+        }
+        $this->words[$type][$word]++; // increment the word count for the type
+    }
+    $this->documents[$type]++; // increment the document count for the type
+}
+```
+So with that set, the training set can be added and the alorithm can start making guesses.
 
 ### Guessing
 The guessing uses Bayes' theorem for calculating the probability for a `Type` given a sentence. Formally we would write it as `P(Type | sentence) = P(Type) * P(sentence | Type) / P(sentence)`. This can actually be simplyfied a bit, since the `P(sentence)` is constant for our calculations, we are only interested in the `Type` and thus it can be removed. Thus we end up with `P(Type | sentence) = P(Type) * P(sentence | Type)`. Using the chain rule we can even further simplify this into `P(Type | sentence) = P(Type) * P(word_1 | Type) * ... * P(word_n | Type)` where we multiply all the individual probabilities for the words to get that of the sentence. You should now see only familiair terms, which means it can now be calculated.
 
 Lastly before actually showing the implementation, the alorithm should calculate `P(Type | sentence)` for every `Type` and pick the one which give the highest likelihood. The one with the highest likelihood will be the result of the classification. So without further ado, an implementation could look like:
 ```php
-function guess($statement)
+class Classifier
 {
-    $words           = $this->getWords($statement); // get the words
-    $best_likelihood = 0;
-    $best_type       = null;
+    //...
+    
+    public function guess($statement)
+    {
+        $words           = $this->getWords($statement); // get the words
+        $best_likelihood = 0;
+        $best_type       = null;
 
-    foreach ($this->types as $type) {
-        $likelihood = $this->pTotal($type); // calculate P(Type)
+        foreach ($this->types as $type) {
+            $likelihood = $this->pTotal($type); // calculate P(Type)
 
-        foreach ($words as $word) {
-            $likelihood *= $this->p($word, $type); // calculate P(word | Type)
+            foreach ($words as $word) {
+                $likelihood *= $this->p($word, $type); // calculate P(word | Type)
+            }
+
+            if ($likelihood > $best_likelihood) {
+                $best_likelihood = $likelihood;
+                $best_type       = $type;
+            }
         }
 
-        if ($likelihood > $best_likelihood) {
-            $best_likelihood = $likelihood;
-            $best_type       = $type;
-        }
+        return $best_type;
     }
-
-    return $best_type;
 }
 ```
 
