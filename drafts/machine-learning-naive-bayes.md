@@ -1,43 +1,104 @@
 Machine learning is for me an interesting topic since it is slowly becomming ubiquitous in our daily lives. From thermostats which know when you will be home, to smarter cars and the phone we have in our pocket. It seems like it is everywhere and that makes it an intresting field to explore, but what is machine learning? In general terms, it is a way for a system to learn and make predictions. This can be as simple as predicting relevent shopping items to as complex as a digital assistant.
 
-With this blog post I will try to give an introduction into classification using the [Naive Bayes classifier algorithm][naive bayes classifier]. It is an easy algorithm to implement while giving faily decent results. Hopefully by the end of it you might see some applications and even try to implement it yourself!
+With this blog post I will try to give an introduction into classification using the [Naive Bayes classifier algorithm][naive bayes classifier]. It is an easy algorithm to implement while giving faily decent results but it will require some statistics, so bear with me. Hopefully by the end of it you might see some applications and even try to implement it yourself!
 
 ## Setup
-So, what do we want to achieve? Let's say I want to guess the subject of a question. Questions can be either about *time* or about *mood*. For instance, `"How are you?"` is a *mood* question, while `"When are you there?"` is a *time* question. So given a question, I want to system to return the subject of that question. For the types I will create an Enum-like class called `Type` and it will contain `MOOD` and `TIME` constants.
+So, what does the classifier want to achieve? Well, it should be able to guess if a sentence is *Positive* or *Negative*. For instance, `"Symfony is the best"` is a *Positive* sentence, while `"No Symfony is bad"` is a *Negative* sentence. So given a new sentence, I want the classifier to return the type without me implementing new rules. 
+
+So from this, the basic setup for the classifier will be in a class called `Classifier` and it will contain a guess method. This method should get the new sentence as input and will return either *Positive* or *Negative*. The class would like something like so:
+```php
+class Classifier
+{
+    public function guess($statement)
+    {}
+}
+```
+
+Moreover, I do not like woring with static string, so also define an Enum-like class called `Type` and it will contain `POSITIVE` and `NEGATIVE` constants which will be used for the output.
 
 ```php
 class Type
 {
-    const MOOD = 'mood';
-    const TIME = 'time';
+    const POSITIVE = 'positive';
+    const NEGATIVE = 'negative';
 }
 ```
 
-The actual classifier will be in a class called `Classifier` and will contain a guess method which will return one of the two constants from the `Type` enum. The class would like something like so:
-
-```php
-class Classifier
-{
-    public function guess($question)
-    {}
-}
-```
-All set, let us dive into the math!
+Setup done, time to create an algorithm that can make predictions!
 
 ## Naive Bayes
-Naive Bayes works by looking at a training set and seeing how close your input resembels something it already knows and return that group. It does so using simple statistics and a bit of math. For example, when looking at the following training set:
+Naive Bayes works by looking at a training set and seeing how close your input resembels something it already knows and return that group. It does so using simple statistics and a bit of math. For example, when looking at the following training set consisting of 4 documents:
 
-| String | Type |
+| Statement | Type |
 |---|:---:|
-| How are you? | `mood` |
-| How do you do? | `mood` |
-| What time is it? | `time` |
-| What is the time? | `time` |
+| Symfony is the best | `Positive` |
+| PhpStorm is great | `Positive` |
+| Iltar complains a lot | `Negative` |
+| No Symfony is bad | `Negative` |
 
-If given the input `"What's the time?"` we can intuitively say that this input is more like the `time` strings than the `mood` strings. What this means that we want to compare the probability between `time` and `mood` and pick the one that is higher. We do this by looking at each word an calculating the likelyhood it is part of the type. We denote this by `p(string | Type)`. For the example, the likelyhood will be the frequency of that word. Thus `p(string | Type)` will be `(count($words[Type], string) + 1) / (count($words[Type]) + unique_count($words));`
+If given the input `"Symfony is great"` you can intuitively say that this input is a *Positive* statement. You usually do this by looking at what was perviously taught and make a desicion on that historical information. This is what Naive Bayes also does: it looks at the training set and sees which type is more likely. 
 
-`P(mood) * p("what" | mood) * p("s" | mood) * p("time" | mood)`
+### Learning
 
-We can calculate the probability density of a given string by looking at the individual words. In the case of `"What's the time?"` will will want to know 
+
+### Definitions
+Naive Bayes uses a bit of statistics to do this and to further explain this, a couple of definitions are needed. First of all, lets define the probability that the input is one of the given types also denoted with `P(Type)`. This is done by simply dividing the number of knows documents of a type, by the total of documents in the training set. A document is in this case an entry in the training set. For now, this method shall be called `totalP` and would look like so:
+```php
+function totalP($type)
+{
+    return ($this->documents[$type] + 1) / (array_sum($this->documents) + 1);
+}
+```
+> Note here that `1` is added to both the numerator and denominator to prevent `0` probabilities.
+
+In the given example, both *Positive* and *Negative* would result in `0.5` since there are 2 items each of the total 4 documents (so `2 / 4`).
+
+The second definition is that of the probability a word is part of the type, we denote this with `P(word | Type)`. We do this by counting how often a word occurred in the training documents for the given `Type` and dividing that onto the total words in the documents for that `Type`. This method is called `p` and would look like so:
+```php
+function p($word, $type)
+{
+    $count = isset($this->words[$type][$word]) ? $this->words[$type][$word] : 0;
+
+    return ($count + 1) / (array_sum($this->words[$type]) + 1);
+}
+```
+In the training set, the word `is` for `Type` *Positive* would be `0.375` since it occurs twice in the total of 7 words for the `Positive` training set, which would result in `(2 + 1) / (7 + 1)`.
+
+Lastly, the algorithm should only consider words and ignore anything else. A simple method to give a list of words from a string can be implemented as such:
+```php
+function getWords($string)
+{
+    return preg_split('/\s+/', preg_replace('/[^A-Za-z0-9\s]/', '', strtolower($string)));
+}
+```
+All set, now to put everything together!
+
+### Guessing
+The guessing uses Bayes' theorem for calculating the probability for a `Type` given a sentence. Formally we would write it as `P(Type | sentence) = P(Type) * P(sentence | Type) / P(sentence)`. This can actually be simplyfied a bit, since the `P(sentence)` is constant for our calculations, we are only interested in the `Type` and thus it can be removed. Thus we end up with `P(Type | sentence) = P(Type) * P(sentence | Type)`. Using the chain rule we can even further simplify this into `P(Type | sentence) = P(Type) * P(word_1 | Type) * ... * P(word_n | Type)` where we multiply all the individual probabilities for the words to get that of the sentence. You should now see only familiair terms, which means it can now be calculated.
+
+Lastly before actually showing the implementation, the alorithm should calculate `P(Type | sentence)` for every `Type` and pick the one which give the highest likelihood. The one with the highest likelihood will be the result of the classification. So without further ado, an implementation could look like:
+```php
+function guess($statement)
+{
+    $words           = $this->getWords($statement); // get the words
+    $best_likelihood = 0;
+    $best_type       = null;
+
+    foreach ($this->types as $type) {
+        $likelihood = $this->pTotal($type); // calculate P(Type)
+
+        foreach ($words as $word) {
+            $likelihood *= $this->p($word, $type); // calculate P(word | Type)
+        }
+
+        if ($likelihood > $best_likelihood) {
+            $best_likelihood = $likelihood;
+            $best_type       = $type;
+        }
+    }
+
+    return $best_type;
+}
+```
 
 [naive bayes classifier]: https://en.wikipedia.org/wiki/Naive_Bayes_classifier
