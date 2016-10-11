@@ -94,31 +94,26 @@ The guessing uses Bayes' theorem for calculating the probability for a `Type` gi
 
 Lastly before actually showing the implementation, the alorithm should calculate `P(Type | sentence)` for every `Type` and pick the one which give the highest likelihood. The one with the highest likelihood will be the result of the classification. So without further ado, an implementation could look like:
 ```php
-class Classifier
+function guess($statement)
 {
-    //...
-    
-    public function guess($statement)
-    {
-        $words           = $this->getWords($statement); // get the words
-        $best_likelihood = 0;
-        $best_type       = null;
+    $words           = $this->getWords($statement); // get the words
+    $best_likelihood = 0;
+    $best_type       = null;
 
-        foreach ($this->types as $type) {
-            $likelihood = $this->pTotal($type); // calculate P(Type)
+    foreach ($this->types as $type) {
+        $likelihood = $this->pTotal($type); // calculate P(Type)
 
-            foreach ($words as $word) {
-                $likelihood *= $this->p($word, $type); // calculate P(word | Type)
-            }
-
-            if ($likelihood > $best_likelihood) {
-                $best_likelihood = $likelihood;
-                $best_type       = $type;
-            }
+        foreach ($words as $word) {
+            $likelihood *= $this->p($word, $type); // calculate P(word | Type)
         }
 
-        return $best_type;
+        if ($likelihood > $best_likelihood) {
+            $best_likelihood = $likelihood;
+            $best_type       = $type;
+        }
     }
+
+    return $best_type;
 }
 ```
 
