@@ -48,7 +48,7 @@ function totalP($type)
 ```
 > Note here that `1` is added to both the numerator and denominator to prevent `0` probabilities.
 
-In the given example, both *Positive* and *Negative* would result in `0.5` since there are 2 items each of the total 4 documents (so `2 / 4`).
+In the given example, both *Positive* and *Negative* would result in `0.6` since there are 2 items each of the total 4 documents (so `(2 + 1) / (4 + 1)`).
 
 The second definition is that of the probability a word is part of the type, we denote this with `P(word | Type)`. We do this by counting how often a word occurred in the training documents for the given `Type` and dividing that onto the total words in the documents for that `Type`. This method is called `p` and would look like so:
 ```php
