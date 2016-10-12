@@ -5,7 +5,7 @@ With this blog post I will try to give an introduction into classification using
 ## Setup
 So, what does the classifier want to achieve? Well, it should be able to guess if a sentence is *Positive* or *Negative*. For instance, `"Symfony is the best"` is a *Positive* sentence, while `"No Symfony is bad"` is a *Negative* sentence. So given a new sentence, I want the classifier to return the type without me implementing new rules. 
 
-So from this, the basic setup for the classifier will be in a class called `Classifier` and it will contain a guess method. This method should get the new sentence as input and will return either *Positive* or *Negative*. The class would like something like so:
+From this, the basic setup for the classifier will be in a class called `Classifier` and it will contain a guess method. This method should get the new sentence as input and will return either *Positive* or *Negative*. The class would like something like so:
 ```php
 class Classifier
 {
