@@ -50,7 +50,7 @@ function totalP($type)
 
 In the given example, both *Positive* and *Negative* would result in `0.6` since there are 2 items each of the total 4 documents (so `(2 + 1) / (4 + 1)`).
 
-The second definition is that of the probability a word is part of the type, we denote this with `P(word | Type)`. We do this by counting how often a word occurred in the training documents for the given `Type` and dividing that onto the total words in the documents for that `Type`. This method is called `p` and would look like so:
+The second definition is that of the probability a *word*, given a certain *Type*, formally this is defined as `P(word | Type)`. We do this by counting how often a word occurred in the training documents for the given `Type` and dividing that onto the total words in the documents for that `Type`. This method is called `p` and would look like so:
 ```php
 function p($word, $type)
 {
@@ -90,9 +90,15 @@ function learn($statement, $type)
 So with that set, the training set can be added and the alorithm can start making guesses.
 
 ### Guessing
-The guessing uses Bayes' theorem for calculating the probability for a `Type` given a sentence. Formally we would write it as `P(Type | sentence) = P(Type) * P(sentence | Type) / P(sentence)`. This can actually be simplyfied a bit, since the `P(sentence)` is constant for our calculations, we are only interested in the `Type`. Every term not dependended on `Type` can thus be removed. The result is then `P(Type | sentence) = P(Type) * P(sentence | Type)`. Using the chain rule we can even further simplify this into `P(Type | sentence) = P(Type) * P(word_1 | Type) * ... * P(word_n | Type)` where we multiply all the individual probabilities for the words to get that of the sentence. You should now see only familiair terms, which means it can now be calculated.
+In order to guess the `Type` of a sentence, the alorithm should calculate for each `Type` the probility given a sentence. Formally this would be written as `P(Type | sentence)`. The `Type` with the highest probility will be the result of the classification and returned by the algorithm. 
 
-Lastly before actually showing the implementation, the alorithm should calculate `P(Type | sentence)` for every `Type` and pick the one which give the highest likelihood. The one with the highest likelihood will be the result of the classification. So without further ado, an implementation could look like:
+To calculate `P(Type | sentence)` Bayes' theorem can be used. Formally the theorem is defined as `P(Type | sentence) = P(Type) * P(sentence | Type) / P(sentence)` which means that the probability for the `Type` given a sentence is the same as the probility of the `Type` times the probability for the sentence given a `Type` divided by the probility of the sentence.
+
+As you might have guessed, since the algorithm calculates each `P(Type | sentence)` for the same sentence, the `P(sentence)` is always the same. This means that it can be ommitted since we only care about the highest probaility, not the actual value. This means that caluclation can be simplified to: `P(Type | sentence) = P(Type) * P(sentence | Type)`.
+
+Finally, to calulate `P(sentence | Type)` we can apply the the chain rule to each word in the sentence. So if there are `n` words in the sentence this is the same as `P(word_1 | Type) * P(word_2 | Type) * P(word_3 | Type) * ... * P(word_n | Type)`. The probability of each word can be caluclated using the definition as seen earlier.
+
+Okay, all set, time for the actual implementation in php:
 ```php
 function guess($statement)
 {
@@ -116,5 +122,27 @@ function guess($statement)
     return $best_type;
 }
 ```
+And that is it, now the algorithm can guess which type a statement is. All that is needed is to put it all together like so:
+```php
+$classifier = new Classifier();
+$classifier->learn('Symfony is the best', Type::POSITIVE);
+$classifier->learn('PhpStorm is great', Type::POSITIVE);
+$classifier->learn('Iltar complains a lot', Type::NEGATIVE);
+$classifier->learn('No Symfony is bad', Type::NEGATIVE);
+
+var_dump($classifier->guess('Symfony is great')); // string(8) "positive"
+var_dump($classifier->guess('I complain a lot')); // string(8) "negative"
+```
+
+The full implementation I have added to [the git repository of this post, see Classifier.php][github-classifier]
+
+## Wrapping up
+There you have it, even with a **very** small training set the algorithm can still return some correct results. In a more real world example you would have hundreds of learning records to give more accurate results. For example, [Naive Bayes has been proven to give decent results in sentiment analyses][nb-twitter-sentiment].
+
+Moreover, Naive Bayes can be applied to more than just text. If you have other ways of calculating the probilities of your metrics you can also plug those in and it will just as good.
+
+Hopefull with this post you I have made the world of machine learning a bit more accesable to you. If you like this one, let me know in the comment below!
 
 [naive bayes classifier]: https://en.wikipedia.org/wiki/Naive_Bayes_classifier
+[github-classifier]: https://github.com/yannickl88/blog-articles/blob/master/src/machine-learning-naive-bayes/Classifier.php
+[nb-twitter-sentiment]: http://www-nlp.stanford.edu/courses/cs224n/2009/fp/3.pdf
