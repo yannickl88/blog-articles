@@ -1,3 +1,7 @@
+[//]: # (TITLE: Avoiding static in your code)
+[//]: # (DATE: 2016-10-21T08:00:00+01:00)
+[//]: # (TAGS: php, machine learning, naive bayes)
+
 Machine learning is becoming more and more ubiquitous in our daily lives. From thermostats which know when you will be home, to smarter cars and the phone we have in our pocket. It seems like it is everywhere and that makes it an interesting field to explore! But what is machine learning? In general terms, it is a way for a system to learn and make predictions. This can be as simple as predicting relevant shopping items to as complex as a digital assistant.
 
 With this blog post I will try to give an introduction into classification using the [Naive Bayes classifier algorithm][naive bayes classifier]. It is an easy algorithm to implement while giving decent results. But it will need some statistic knowledge to understand, so bear with me. By the end of it you might see some applications and even try to implement it yourself!
