@@ -64,7 +64,7 @@ function p($word, $type)
 }
 ```
 
-In the training set, the word `is` for `Type` *Positive* would be `0.375`. The word occurs twice in the total of 7 words for the `Positive` training set, which would result in `(2 + 1) / (7 + 1)`.
+In the training set, the probability the word "is" is *Positive* would be `0.375`. The word occurs twice in the total of 7 words for the `Positive` training set, which would result in `(2 + 1) / (7 + 1)`.
 
 Finally, the algorithm should only consider words and ignore anything else. A simple method to give a list of words from a string can be implemented as such:
 
