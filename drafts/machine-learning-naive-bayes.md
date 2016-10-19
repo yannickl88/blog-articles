@@ -1,4 +1,4 @@
-[//]: # (TITLE: Avoiding static in your code)
+[//]: # (TITLE: Machine Learning: Naive Bayes)
 [//]: # (DATE: 2016-10-21T08:00:00+01:00)
 [//]: # (TAGS: php, machine learning, naive bayes)
 
