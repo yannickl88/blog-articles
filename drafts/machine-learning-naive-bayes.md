@@ -1,6 +1,6 @@
-Machine learning is for me an interesting topic since it is slowly becomming ubiquitous in our daily lives. From thermostats which know when you will be home, to smarter cars and the phone we have in our pocket. It seems like it is everywhere and that makes it an intresting field to explore, but what is machine learning? In general terms, it is a way for a system to learn and make predictions. This can be as simple as predicting relevent shopping items to as complex as a digital assistant.
+Machine learning is for me an interesting topic since it is slowly becoming ubiquitous in our daily lives. From thermostats which know when you will be home, to smarter cars and the phone we have in our pocket. It seems like it is everywhere and that makes it an interesting field to explore, but what is machine learning? In general terms, it is a way for a system to learn and make predictions. This can be as simple as predicting relevant shopping items to as complex as a digital assistant.
 
-With this blog post I will try to give an introduction into classification using the [Naive Bayes classifier algorithm][naive bayes classifier]. It is an easy algorithm to implement while giving faily decent results but it will require some statistics, so bear with me. Hopefully by the end of it you might see some applications and even try to implement it yourself!
+With this blog post I will try to give an introduction into classification using the [Naive Bayes classifier algorithm][naive bayes classifier]. It is an easy algorithm to implement while giving fairly decent results but it will require some statistics, so bear with me. Hopefully by the end of it you might see some applications and even try to implement it yourself!
 
 ## Setup
 So, what does the classifier want to achieve? Well, it should be able to guess if a sentence is *Positive* or *Negative*. For instance, `"Symfony is the best"` is a *Positive* sentence, while `"No Symfony is bad"` is a *Negative* sentence. So given a new sentence, I want the classifier to return the type without me implementing new rules. 
@@ -14,7 +14,7 @@ class Classifier
 }
 ```
 
-Moreover, I do not like woring with static string, so also define an Enum-like class called `Type` and it will contain `POSITIVE` and `NEGATIVE` constants which will be used for the output.
+Moreover, I do not like working with static string, so also define an Enum-like class called `Type` and it will contain `POSITIVE` and `NEGATIVE` constants which will be used for the output.
 
 ```php
 class Type
@@ -27,7 +27,7 @@ class Type
 Setup done, time to create an algorithm that can make predictions!
 
 ## Naive Bayes
-Naive Bayes works by looking at a training set and seeing how close your input resembels something it already knows and return that group. It does so using simple statistics and a bit of math. For example, when looking at the following training set consisting of 4 documents:
+Naive Bayes works by looking at a training set and seeing how close your input resembles something it already knows and return that group. It does so using simple statistics and a bit of math. For example, when looking at the following training set consisting of 4 documents:
 
 | Statement | Type |
 |---|:---:|
@@ -36,10 +36,10 @@ Naive Bayes works by looking at a training set and seeing how close your input r
 | Iltar complains a lot | `Negative` |
 | No Symfony is bad | `Negative` |
 
-If given the input `"Symfony is great"` you can intuitively say that this input is a *Positive* statement. You usually do this by looking at what was perviously taught and make a desicion on that historical information. This is what Naive Bayes also does: it looks at the training set and sees which type is more likely. 
+If given the input `"Symfony is great"` you can intuitively say that this input is a *Positive* statement. You usually do this by looking at what was previously taught and make a decision on that historical information. This is what Naive Bayes also does: it looks at the training set and sees which type is more likely. 
 
 ### Definitions
-Naive Bayes uses a bit of statistics to do this and to further explain this, a couple of definitions are needed. First of all, lets define the probability that the input is one of the given types also denoted with `P(Type)`. This is done by simply dividing the number of knows documents of a type, by the total of documents in the training set. A document is in this case an entry in the training set. For now, this method shall be called `totalP` and would look like so:
+Naive Bayes uses a bit of statistics to do this and to further explain this; a couple of definitions are needed. First of all, lets define the probability that the input is one of the given types also denoted with `P(Type)`. This is done by simply dividing the number of knows documents of a type, by the total of documents in the training set. A document is in this case an entry in the training set. For now, this method shall be called `totalP` and would look like so:
 ```php
 function totalP($type)
 {
@@ -71,7 +71,7 @@ function getWords($string)
 All set, time to start implementing!
 
 ### Learning
-Before the algorithm can do anything, the training set needs to be added so the classifier has the historic information. In order to do the work, the classifier must know two things: which word occures how many times for each type, and how many documents are there per type. In this implementation I will store this in two arrays, one which will contain the word counts per type and one which contains the documents counts per type. All the other information I need can be aggregated from those arrays. An implemenation would look like:
+Before the algorithm can do anything, the training set needs to be added so the classifier has the historic information. In order to do the work, the classifier must know two things: which word occurs how many times for each type, and how many documents are there per type. In this implementation I will store this in two arrays, one which will contain the word counts per type and one which contains the documents counts per type. All the other information I need can be aggregated from those arrays. An implementation would look like:
 
 ```php
 function learn($statement, $type)
@@ -87,16 +87,16 @@ function learn($statement, $type)
     $this->documents[$type]++; // increment the document count for the type
 }
 ```
-So with that set, the training set can be added and the alorithm can start making guesses.
+So with that set, the training set can be added and the algorithm can start making guesses.
 
 ### Guessing
-In order to guess the `Type` of a sentence, the alorithm should calculate for each `Type` the probility given a sentence. Formally this would be written as `P(Type | sentence)`. The `Type` with the highest probility will be the result of the classification and returned by the algorithm. 
+In order to guess the `Type` of a sentence, the algorithm should calculate for each `Type` the probability given a sentence. Formally this would be written as `P(Type | sentence)`. The `Type` with the highest probability will be the result of the classification and returned by the algorithm. 
 
-To calculate `P(Type | sentence)` Bayes' theorem can be used. Formally the theorem is defined as `P(Type | sentence) = P(Type) * P(sentence | Type) / P(sentence)` which means that the probability for the `Type` given a sentence is the same as the probility of the `Type` times the probability for the sentence given a `Type` divided by the probility of the sentence.
+To calculate `P(Type | sentence)` Bayes' theorem can be used. Formally the theorem is defined as `P(Type | sentence) = P(Type) * P(sentence | Type) / P(sentence)` which means that the probability for the `Type` given a sentence is the same as the probability of the `Type` times the probability for the sentence given a `Type` divided by the probability of the sentence.
 
-As you might have guessed, since the algorithm calculates each `P(Type | sentence)` for the same sentence, the `P(sentence)` is always the same. This means that it can be ommitted since we only care about the highest probaility, not the actual value. This means that caluclation can be simplified to: `P(Type | sentence) = P(Type) * P(sentence | Type)`.
+As you might have guessed, since the algorithm calculates each `P(Type | sentence)` for the same sentence, the `P(sentence)` is always the same. This means that it can be omitted since we only care about the highest probability, not the actual value. This means that calculation can be simplified to: `P(Type | sentence) = P(Type) * P(sentence | Type)`.
 
-Finally, to calulate `P(sentence | Type)` we can apply the the chain rule to each word in the sentence. So if there are `n` words in the sentence this is the same as `P(word_1 | Type) * P(word_2 | Type) * P(word_3 | Type) * ... * P(word_n | Type)`. The probability of each word can be caluclated using the definition as seen earlier.
+Finally, to calculate `P(sentence | Type)` we can apply the chain rule to each word in the sentence. So if there are `n` words in the sentence this is the same as `P(word_1 | Type) * P(word_2 | Type) * P(word_3 | Type) * ... * P(word_n | Type)`. The probability of each word can be calculated using the definition as seen earlier.
 
 Okay, all set, time for the actual implementation in php:
 ```php
@@ -139,9 +139,9 @@ The full implementation I have added to [the git repository of this post, see Cl
 ## Wrapping up
 There you have it, even with a **very** small training set the algorithm can still return some correct results. In a more real world example you would have hundreds of learning records to give more accurate results. For example, [Naive Bayes has been proven to give decent results in sentiment analyses][nb-twitter-sentiment].
 
-Moreover, Naive Bayes can be applied to more than just text. If you have other ways of calculating the probilities of your metrics you can also plug those in and it will just as good.
+Moreover, Naive Bayes can be applied to more than just text. If you have other ways of calculating the probabilities of your metrics you can also plug those in and it will just as good.
 
-Hopefull with this post you I have made the world of machine learning a bit more accesable to you. If you like this one, let me know in the comment below!
+Hopefully with this post you I have made the world of machine learning a bit more accessible to you. If you like this one, let me know in the comment below!
 
 [naive bayes classifier]: https://en.wikipedia.org/wiki/Naive_Bayes_classifier
 [github-classifier]: https://github.com/yannickl88/blog-articles/blob/master/src/machine-learning-naive-bayes/Classifier.php
