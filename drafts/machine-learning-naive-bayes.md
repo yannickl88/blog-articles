@@ -32,10 +32,10 @@ Naive Bayes works by looking at a training set and makes a guess based on that t
 
 | Statement | Type |
 |---|:---:|
-| Symfony is the best | `Positive` |
-| PhpStorm is great | `Positive` |
-| Iltar complains a lot | `Negative` |
-| No Symfony is bad | `Negative` |
+| Symfony is the best | *Positive* |
+| PhpStorm is great | *Positive* |
+| Iltar complains a lot | *Negative* |
+| No Symfony is bad | *Negative* |
 
 If given the sentence `"Symfony is great"` you can say that this input is a *Positive* statement. You usually do this by looking at what was taught before and make a decision on that information. This is what Naive Bayes also does: it looks at the training set and sees which type is more likely. 
 
@@ -64,7 +64,7 @@ function p($word, $type)
 }
 ```
 
-In the training set, the probability the word "is" is *Positive* would be `0.375`. The word occurs twice in the total of 7 words for the *Positive* training set, which would result in `(2 + 1) / (7 + 1)`.
+In the training set, the probability the word `"is"` is *Positive* would be `0.375`. The word occurs twice in the total of 7 words for the *Positive* training set, which would result in `(2 + 1) / (7 + 1)`.
 
 Finally, the algorithm should only consider words and ignore anything else. A simple method to give a list of words from a string can be implemented as such:
 
