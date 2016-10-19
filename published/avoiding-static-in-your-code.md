@@ -1,6 +1,6 @@
 [//]: # (TITLE: Avoiding static in your code)
-[//]: # (DATE: 2016-08-03T08:00:00+01:00)
-[//]: # (TAGS: php, static, phpunit)
+[//]: # (DATE: 2016-10-21T08:00:00+01:00)
+[//]: # (TAGS: php, machine learning, naive bayes)
 
 For anyone not familiar with the `static` keyword in languages, it is in essence a way of defining things on class level instead of instance level. This allows you to access the same reference from anywhere in your code. 
 
