@@ -46,7 +46,7 @@ class Classifier
         $this->documents[$type]++; // increment the document count for the type
     }
 
-    private function p($word, $type)
+    public function p($word, $type)
     {
         $count = 0;
 
@@ -57,12 +57,12 @@ class Classifier
         return ($count + 1) / (array_sum($this->words[$type]) + 1);
     }
 
-    private function pTotal($type)
+    public function pTotal($type)
     {
         return ($this->documents[$type] + 1) / (array_sum($this->documents) + 1);
     }
 
-    private function getWords($string)
+    public function getWords($string)
     {
         return preg_split('/\s+/', preg_replace('/[^A-Za-z0-9\s]/', '', strtolower($string)));
     }
@@ -74,4 +74,5 @@ $classifier->learn('PhpStorm is great', Type::POSITIVE);
 $classifier->learn('Iltar complains a lot', Type::NEGATIVE);
 $classifier->learn('No Symfony is bad', Type::NEGATIVE);
 
-var_dump($classifier->guess('Symfony is great'));
+var_dump($classifier->guess('Symfony is great')); // string(8) "positive"
+var_dump($classifier->guess('I complain a lot')); // string(8) "negative"
