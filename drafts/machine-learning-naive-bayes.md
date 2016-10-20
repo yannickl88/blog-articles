@@ -44,7 +44,7 @@ Naive Bayes works by looking at a training set and makes a guess based on that t
 If given the sentence `"Symfony is great"` you can say that this input is a *Positive* statement. You usually do this by looking at what was taught before and make a decision on that information. This is what Naive Bayes also does: it looks at the training set and sees which type is more likely. 
 
 ### Definitions
-To explain how the algorithm works a couple of definitions are needed. First of all, lets define the probability that the input is one of the given types. This is denoted with `P(Type)`. This is done by dividing the number of knows documents of a type, by the total of documents in the training set. A document is in this case an entry in the training set. For now, this method will be called `totalP` and would look like so:
+To explain how the algorithm works a couple of definitions are needed. First of all, lets define the probability that the input is one of the given types. This is denoted with `P(Type)`. This is done by dividing the number of known documents of a `Type`, by the total of documents in the training set. A document is in this case an entry in the training set. For now, this method will be called `totalP` and would look like so:
 
 ```php
 function totalP($type)
@@ -57,7 +57,7 @@ function totalP($type)
 
 In the given example, both *Positive* and *Negative* would result in `0.6`. There are 2 items each of the total 4 documents so `(2 + 1) / (4 + 1)`.
 
-The second definition is that of the probability a *word*, given a certain *Type*. This is defined as `P(word | Type)`. This is done by first counting how often a word occurred in the training documents for the given `Type`. This result is then divided by the total words in the documents for that `Type`. This method is called `p` and would look like so:
+The second definition is that of the probability of a *word* belonging to a certain *Type*. This is defined as `P(word, Type)`. This is done by first counting how often a word occurred in the training documents for the given `Type`. This result is then divided by the total words in the documents for that `Type`. This method is called `p` and would look like so:
 
 ```php
 function p($word, $type)
@@ -103,13 +103,13 @@ So with that set, the training can learn so it can make educated guesses.
 
 ### Guessing
 
-To guess the `Type` of a sentence, the algorithm should calculate for each `Type` the probability given a sentence. Formally this is written would as `P(Type | sentence)`. The `Type` with the highest probability will be the result of the classification and returned by the algorithm. 
+To guess the `Type` of a sentence, the algorithm should calculate for each `Type` the probability given a sentence. Formally this is written would as `P(Type, sentence)`. The `Type` with the highest probability will be the result of the classification and returned by the algorithm. 
 
-To calculate `P(Type | sentence)` the algorithm uses Bayes' theorem. The theorem is defined as `P(Type | sentence) = P(Type) * P(sentence | Type) / P(sentence)`. This means that the probability for the `Type` given a sentence is the same as the probability of the `Type` times the probability for the sentence given a `Type` divided by the probability of the sentence.
+To calculate `P(Type, sentence)` the algorithm uses Bayes' theorem. The theorem is defined as `P(Type, sentence) = P(Type) * P(sentence, Type) / P(sentence)`. This means that the probability for the `Type` given a sentence is the same as the probability of the `Type` times the probability for the sentence given a `Type` divided by the probability of the sentence.
 
-Since the algorithm calculates each `P(Type | sentence)` for the same sentence, the `P(sentence)` is always the same. This means that it can be omitted since we only care about the highest probability, not the actual value. The simplified calculation would be: `P(Type | sentence) = P(Type) * P(sentence | Type)`.
+Since the algorithm calculates each `P(Type, sentence)` for the same sentence, the `P(sentence)` is always the same. This means that it can be omitted since we only care about the highest probability, not the actual value. The simplified calculation would be: `P(Type, sentence) = P(Type) * P(sentence, Type)`.
 
-Finally, to calculate `P(sentence | Type)` we can apply the chain rule to each word in the sentence. So if there are `n` words in the sentence this is the same as `P(word_1 | Type) * P(word_2 | Type) * P(word_3 | Type) * ... * P(word_n | Type)`. The calculation of the probability of each word is using the definition as seen earlier.
+Finally, to calculate `P(sentence, Type)` we can apply the chain rule to each word in the sentence. So if there are `n` words in the sentence this is the same as `P(word_1, Type) * P(word_2, Type) * P(word_3, Type) * ... * P(word_n, Type)`. The calculation of the probability of each word is using the definition as seen earlier.
 
 Okay, all set, time for the actual implementation in php:
 
@@ -124,7 +124,7 @@ function guess($statement)
         $likelihood = $this->pTotal($type); // calculate P(Type)
 
         foreach ($words as $word) {
-            $likelihood *= $this->p($word, $type); // calculate P(word | Type)
+            $likelihood *= $this->p($word, $type); // calculate P(word, Type)
         }
 
         if ($likelihood > $best_likelihood) {
