@@ -45,7 +45,7 @@ If given the sentence `"Symfony is great"` you can say that this input is a *Pos
 
 ### Learning
 
-Before the algorithm can do anything, it requires a training set with historic information. It must know two things: which word occurs how many times for each type, and how many documents are there per type. This implementation will store this information in two arrays. One which will contain the word counts per type and one which contains the documents counts per type. All the other information can be aggregated from those arrays. An implementation would look like:
+Before the algorithm can do anything, it requires a training set with historic information. It must know two things: which word occurs how many times for each `Type`, and how many documents (or statements) are there per `Type`. The implementation will store this information in two arrays. One which contains the word counts per `Type` and one which contains the documents counts per `Type`. All the other information can be aggregated from those arrays. The implementation would look like:
 
 ```php
 function learn($statement, $type)
