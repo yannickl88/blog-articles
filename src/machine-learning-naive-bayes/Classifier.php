@@ -21,7 +21,7 @@ class Classifier
             $likelihood = $this->pTotal($type); // calculate P(Type)
 
             foreach ($words as $word) {
-                $likelihood *= $this->p($word, $type); // calculate P(word | Type)
+                $likelihood *= $this->p($word, $type); // calculate P(word, Type)
             }
 
             if ($likelihood > $best_likelihood) {
