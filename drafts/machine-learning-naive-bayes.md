@@ -43,6 +43,27 @@ Naive Bayes works by looking at a training set and makes a guess based on that t
 
 If given the sentence `"Symfony is great"` you can say that this input is a *Positive* statement. You usually do this by looking at what was taught before and make a decision on that information. This is what Naive Bayes also does: it looks at the training set and sees which type is more likely. 
 
+### Learning
+
+Before the algorithm can do anything, it requires a training set with historic information. It must know two things: which word occurs how many times for each type, and how many documents are there per type. This implementation will store this information in two arrays. One which will contain the word counts per type and one which contains the documents counts per type. All the other information can be aggregated from those arrays. An implementation would look like:
+
+```php
+function learn($statement, $type)
+{
+    $words = $this->getWords($statement);
+
+    foreach ($words as $word) {
+        if (!isset($this->words[$type][$word])) {
+            $this->words[$type][$word] = 0;
+        }
+        $this->words[$type][$word]++; // increment the word count for the type
+    }
+    $this->documents[$type]++; // increment the document count for the type
+}
+```
+
+So with that set, the algorithm now has historic data so it can make educated guesses.
+
 ### Definitions
 To explain how the algorithm works a couple of definitions are needed. First of all, lets define the probability that the input is one of the given types. This is denoted with `P(Type)`. This is done by dividing the number of known documents of a `Type`, by the total of documents in the training set. A document is in this case an entry in the training set. For now, this method will be called `totalP` and would look like so:
 
@@ -79,27 +100,6 @@ function getWords($string)
 }
 ```
 All set, time to start implementing!
-
-### Learning
-
-Before the algorithm can do anything, it requires a training set with historic information. It must know two things: which word occurs how many times for each type, and how many documents are there per type. This implementation will store this information in two arrays. One which will contain the word counts per type and one which contains the documents counts per type. All the other information can be aggregated from those arrays. An implementation would look like:
-
-```php
-function learn($statement, $type)
-{
-    $words = $this->getWords($statement);
-
-    foreach ($words as $word) {
-        if (!isset($this->words[$type][$word])) {
-            $this->words[$type][$word] = 0;
-        }
-        $this->words[$type][$word]++; // increment the word count for the type
-    }
-    $this->documents[$type]++; // increment the document count for the type
-}
-```
-
-So with that set, the training can learn so it can make educated guesses.
 
 ### Guessing
 
