@@ -1,3 +1,6 @@
+[//]: # (TITLE: Service Decoration in Practice)
+[//]: # (DATE: 2017-01-12T08:00:00+01:00)
+[//]: # (TAGS: php, doctrine, entity, decoration, symfony, dependency injection container)
 
 [wouterj-repositories-are-just-collections]: http://wouterj.nl/2016/12/repositories-are-just-collections/
 [wiki-liskov-substitution-principle]: https://en.wikipedia.org/wiki/Liskov_substitution_principle
