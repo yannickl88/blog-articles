@@ -6,6 +6,7 @@
 [wiki-liskov-substitution-principle]: https://en.wikipedia.org/wiki/Liskov_substitution_principle
 [wiki-composition-over-inheritance]: https://en.wikipedia.org/wiki/Composition_over_inheritance
 [fig-psr-6-cache]: http://www.php-fig.org/psr/psr-6/
+[symfony-service-decoration]: http://symfony.com/doc/current/service_container/service_decoration.html
 
 Recently [WouterJ has written an excelent article about repositories][wouterj-repositories-are-just-collections] and how to treat them as collections. In it he also shows that it is useful to have interfaces on your repository classes. If you have not yet read it, I fully recommend doing so. 
 
@@ -109,7 +110,7 @@ class CachedProductRepository implements ProductRepositoryInterface
     }
 }
 ```
-We can then decorate the original services with the cached version.
+We can then [decorate the original services][symfony-service-decoration] with the cached version.
 ```yaml
 services:
     app.product_repository.cached:
