@@ -57,7 +57,7 @@ class ProductRepository implements ProductRepositoryInterface
 }
 ```
 And for the service definition:
-```yml
+```yaml
 services:
     app.product_repository:
         class: App\Entity\ProductRepository
@@ -110,7 +110,7 @@ class CachedProductRepository implements ProductRepositoryInterface
 }
 ```
 We can then decorate the original services with the cached version.
-```yml
+```yaml
 services:
     app.product_repository.cached:
         class: App\Entity\CachedProductRepository
@@ -155,7 +155,7 @@ class ArrayProductRepository implements ProductRepositoryInterface
 }
 ```
 And in the `config_test.yml` you can decorate the original services.
-```yml
+```yaml
 services:
     app.product_repository.array:
         class: App\Entity\Test\ArrayProductRepository
