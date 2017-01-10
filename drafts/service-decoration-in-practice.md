@@ -1,4 +1,10 @@
-Recently WouterJ has written an excelent article about repositories and in it he shows that it is usefull to have interfaces on your repository classes. This is something I have applied in a recent project and discovered that with those interfaces, you actually also have some additional benifits. If you have not yet read it, I fully recommend doing so.
+
+[wouterj-repositories-are-just-collections]: http://wouterj.nl/2016/12/repositories-are-just-collections/
+[wiki-liskov-substitution-principle]: https://en.wikipedia.org/wiki/Liskov_substitution_principle
+[wiki-composition-over-inheritance]: https://en.wikipedia.org/wiki/Composition_over_inheritance
+[fig-psr-6-cache]: http://www.php-fig.org/psr/psr-6/
+
+Recently [WouterJ has written an excelent article about repositories][wouterj-repositories-are-just-collections] and in it he shows that it is usefull to have interfaces on your repository classes. This is something I have applied in a recent project and discovered that with those interfaces, you actually also have some additional benifits. If you have not yet read it, I fully recommend doing so.
 
 That being said, in this post I would like to expand on the idea of having interfaces on the repositories and show how this enables service decoration.
 
@@ -58,9 +64,9 @@ services:
 Okay, nothing special so far. So why is this useful?
 
 ## Extending by decorating
-Requirements keep changing as time goes on. What was a good decision now might come to haunt you later on. This is why we tend to stick to best-practices and software patterns. They have proven themselfs flexiable enough to handle changing situations. One that comes to mind when discussing extending a featureset of something is *Composition over Inheritance*.
+Requirements keep changing as time goes on. What was a good decision now might come to haunt you later on. This is why we tend to stick to best-practices and software patterns. They have proven themselfs flexiable enough to handle changing situations. One that comes to mind when discussing extending a featureset of something is [*Composition over Inheritance*][wiki-composition-over-inheritance].
 
-For instance, in our example we want to introduce caching. You can do this in a couple of ways, one is to build it into the current implementation. Chosing this option will make your repository far more complex and harder to maintain. Another is extending the repository and implementating caching. However, the cached version is not a [proper subtype][wiki-liskov-substitution-principle] of the doctrine repository, it cannot function without the other. Using composition we can best extend the repository's behaviour.
+For instance, in our example we want to introduce [caching][fig-psr-6-cache]. You can do this in a couple of ways, one is to build it into the current implementation. Chosing this option will make your repository far more complex and harder to maintain. Another is extending the repository and implementating caching. However, the cached version is not a [proper subtype][wiki-liskov-substitution-principle] of the doctrine repository, it cannot function without the other. Using composition we can best extend the repository's behaviour.
 
 An implementation can look like using the PSR `CacheItemPoolInterface`:
 ```php
@@ -153,5 +159,3 @@ services:
 ```
 
 Now the functional test no longer depends on doctrine nor the cache, which should make testing a lot easier. Moreover, a `Product` can easily be inserted for your tests.
-
-[wiki-liskov-substitution-principle]: https://en.wikipedia.org/wiki/Liskov_substitution_principle
