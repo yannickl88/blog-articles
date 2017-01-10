@@ -9,7 +9,7 @@
 
 Recently [WouterJ has written an excelent article about repositories][wouterj-repositories-are-just-collections] and how to treat them as collections. In it he also shows that it is useful to have interfaces on your repository classes. If you have not yet read it, I fully recommend doing so. 
 
-This concept is something I have recently applied in a project and found that there are some extra benefits in doing this. In this post I would like to expand on WouterJ's ideas and show how this enables service decoration.
+This concept is something I have recently applied in a project and found that there are some extra benefits in using those interfaces. In this post I would like to expand on WouterJ's ideas and show how this enables service decoration.
 
 ## The set-up
 For the sake of example, I would like to simplify the repository interface to keep the examples small. The repository will only define the `::get()` and `::add()` methods and leave the rest. The interface would look like so:
