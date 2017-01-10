@@ -7,7 +7,7 @@
 [wiki-composition-over-inheritance]: https://en.wikipedia.org/wiki/Composition_over_inheritance
 [fig-psr-6-cache]: http://www.php-fig.org/psr/psr-6/
 
-Recently [WouterJ has written an excelent article about repositories][wouterj-repositories-are-just-collections] has written an excellent article about repositories and how to treat them. In it he shows that it is useful to have interfaces on your repository classes and how to use them. If you have not yet read it, I fully recommend doing so. 
+Recently [WouterJ has written an excelent article about repositories][wouterj-repositories-are-just-collections] and how to treat them as collections. In it he also shows that it is useful to have interfaces on your repository classes and how to use them. If you have not yet read it, I fully recommend doing so. 
 
 This concept is something I have recently applied in a project and found that there are some extra benefits in doing this. In this post I would like to expand on WouterJ's ideas and show how this enables service decoration.
 
