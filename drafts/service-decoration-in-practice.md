@@ -4,12 +4,12 @@
 [wiki-composition-over-inheritance]: https://en.wikipedia.org/wiki/Composition_over_inheritance
 [fig-psr-6-cache]: http://www.php-fig.org/psr/psr-6/
 
-Recently [WouterJ has written an excelent article about repositories][wouterj-repositories-are-just-collections] and in it he shows that it is usefull to have interfaces on your repository classes. This is something I have applied in a recent project and discovered that with those interfaces, you actually also have some additional benifits. If you have not yet read it, I fully recommend doing so.
+Recently [WouterJ has written an excelent article about repositories][wouterj-repositories-are-just-collections] has written an excellent article about repositories and how to treat them. In it he shows that it is useful to have interfaces on your repository classes and how to use them. If you have not yet read it, I fully recommend doing so. 
 
-That being said, in this post I would like to expand on the idea of having interfaces on the repositories and show how this enables service decoration.
+This concept is something I have recently applied in a project and found that there are some extra benefits in doing this. In this post I would like to expand on WouterJ's ideas and show how this enables service decoration.
 
 ## The set-up
-For the sake of example, I would like to simplify the repository interface somewhat to keep the examples small. For the repository I would like to only define the `::get()` and `::add()` method. The interface would look like so:
+For the sake of example, I would like to simplify the repository interface to keep the examples small. The repository will only define the `::get()` and `::add()` methods and leave the rest. The interface would look like so:
 
 ```php
 namespace App\Entity;
@@ -64,11 +64,12 @@ services:
 Okay, nothing special so far. So why is this useful?
 
 ## Extending by decorating
-Requirements keep changing as time goes on. What was a good decision now might come to haunt you later on. This is why we tend to stick to best-practices and software patterns. They have proven themselfs flexiable enough to handle changing situations. One that comes to mind when discussing extending a featureset of something is [*Composition over Inheritance*][wiki-composition-over-inheritance].
 
-For instance, in our example we want to introduce [caching][fig-psr-6-cache]. You can do this in a couple of ways, one is to build it into the current implementation. Chosing this option will make your repository far more complex and harder to maintain. Another is extending the repository and implementating caching. However, the cached version is not a [proper subtype][wiki-liskov-substitution-principle] of the doctrine repository, it cannot function without the other. Using composition we can best extend the repository's behaviour.
+Requirements keep changing as time goes on. What was a good decision now might come to haunt you later on. This is why we tend to stick to best-practices and software patterns. They have proven themselves flexible enough to handle changing situations. One that comes to mind when discussing extending a feature of something is [*Composition over Inheritance*][wiki-composition-over-inheritance].
 
-An implementation can look like using the PSR `CacheItemPoolInterface`:
+For instance, in our example we want to introduce [caching][fig-psr-6-cache]. You can do this in a couple of ways, one is to build it into the current implementation. Choosing this option will make your repository far more complex and harder to maintain. Another is extending the repository and implementing caching. Yet, the cached version is not a [proper subtype][wiki-liskov-substitution-principle] of the doctrine repository. For instance, it cannot function without the other. Using composition we can best extend the repository's behavior to allow caching.
+
+An implementation using the PSR-6 `CacheItemPoolInterface` can look like:
 ```php
 namespace App\Entity;
 
@@ -116,10 +117,11 @@ services:
             - "@app.product_repository.cached.inner"
             - "@cache.app"
 ```
-And we are done. No changes had to made to the old code or even the old services definitions. All we did was add.
+And done! The repository is now using caching to load products. No changes had to made to the old code or even the old services definitions. All we did was add.
 
 ## Even more decoration
-At some point you decide you want to start functional testing your applications. However, all those caches and database dependencies are really hard to work around. A solution would be to create an array implementation of the `ProductRepositoryInterface` and use that for testing.
+
+At some point you decide you want to start functional testing your applications. But all those caches and database dependencies are hard to work around. A solution would be to create an array implementation of the `ProductRepositoryInterface` and use that for testing.
 
 An implementation can look like:
 ```php
@@ -158,4 +160,4 @@ services:
         decorates: app.product_repository
 ```
 
-Now the functional test no longer depends on doctrine nor the cache, which should make testing a lot easier. Moreover, a `Product` can easily be inserted for your tests.
+Now the functional test no longer depends on doctrine nor the cache. This should make testing a lot easier and moreover, a `Product` can easily be inserted for your tests. This allows cleaner tests and less bootstrapping.
