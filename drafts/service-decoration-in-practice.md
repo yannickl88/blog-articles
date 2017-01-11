@@ -3,10 +3,10 @@
 [//]: # (TAGS: php, doctrine, entity, decoration, symfony, dependency injection container)
 
 [wouterj-repositories-are-just-collections]: http://wouterj.nl/2016/12/repositories-are-just-collections/
-[wiki-liskov-substitution-principle]: https://en.wikipedia.org/wiki/Liskov_substitution_principle
 [wiki-composition-over-inheritance]: https://en.wikipedia.org/wiki/Composition_over_inheritance
 [fig-psr-6-cache]: http://www.php-fig.org/psr/psr-6/
 [symfony-service-decoration]: http://symfony.com/doc/current/service_container/service_decoration.html
+[symfony-functional-tests]: https://symfony.com/doc/current/testing.html#functional-tests
 
 Recently [WouterJ has written an excelent article about repositories][wouterj-repositories-are-just-collections] and how to treat them as collections. In it he also shows that it is useful to have interfaces on your repository classes. If you have not yet read it, I fully recommend doing so. 
 
@@ -27,7 +27,7 @@ interface ProductRepositoryInterface
     public function add(Product $product): void;
 }
 ```
-Simple enough. A Doctrine implementation of this would look like:
+Simple enough. A Doctrine implementation of the interface using a `Product` entity would look like:
 ```php
 namespace App\Entity;
 
@@ -71,7 +71,9 @@ Okay, nothing special so far. So why is this useful?
 
 Requirements keep changing as time goes on. What was a good decision now might come to haunt you later on. This is why we tend to stick to best-practices and software patterns. They have proven themselves flexible enough to handle changing situations. One that comes to mind when discussing extending a feature of something is [*Composition over Inheritance*][wiki-composition-over-inheritance].
 
-For instance, in our example we want to introduce [caching][fig-psr-6-cache]. You can do this in a couple of ways, one is to build it into the current implementation. Choosing this option will make your repository far more complex and harder to maintain. Another is extending the repository and implementing caching. Yet, the cached version is not a [proper subtype][wiki-liskov-substitution-principle] of the doctrine repository. For instance, it cannot function without the other. Using composition we can best extend the repository's behavior to allow caching.
+Decoration is something you see often when discussing Composition. In essence it is creating a wrapper class for an existing implementation of something. Having a common interface can help if you wish to substitute the new implementation for the old. Moreover, most of the time you want to extend rather than replace. So it can even help to contain the original implementation in your new one so you can delegate calls.
+
+For instance, in our example we want to introduce [caching][fig-psr-6-cache]. You can do this in a couple of ways, but using the decorator pattern will provide an easy solution. In that way we can extend the previous class with an implementation that can cache items.
 
 An implementation using the PSR-6 `CacheItemPoolInterface` can look like:
 ```php
@@ -123,9 +125,11 @@ services:
 ```
 And done! The repository is now using caching to load products. No changes had to made to the old code or even the old services definitions. All we did was add.
 
+As seen in the example, the `CachedProductRepository` still provides all the functionality of the Doctrine `ProductRepository`. Moreover, it does not duplicate the code but reuses the `ProductRepository` to do so. Responsibilities of these classes are well defined. This is usually a good sign that it can be unit tested with ease.
+
 ## Even more decoration
 
-At some point you decide you want to start functional testing your applications. But all those caches and database dependencies are hard to work around. A solution would be to create an array implementation of the `ProductRepositoryInterface` and use that for testing.
+At some point you decide you want to start functional testing your applications. [Symfony provides the `WebTestCase`][symfony-functional-tests] which can be used for functional testing. However, all those caches and database dependencies are hard to work around. A solution would be to create an array implementation of the `ProductRepositoryInterface` and use that for testing.
 
 An implementation can look like:
 ```php
@@ -165,3 +169,7 @@ services:
 ```
 
 Now the functional test no longer depends on doctrine nor the cache. This should make testing a lot easier and moreover, a `Product` can easily be inserted for your tests. This allows cleaner tests and less bootstrapping.
+
+## In conclusion
+
+Decorating services in Symfony sometimes seems like a strange concept and not that useful. With this post I have tried to show a more real-world application of decorating in Symfony. Moreover, when combined with good interfaces it can be a powerful feature to use.
