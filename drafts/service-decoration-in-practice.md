@@ -33,7 +33,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\EntityManagerInterface;
 
-class ProductRepository implements ProductRepositoryInterface
+final class ProductRepository implements ProductRepositoryInterface
 {
     private $em;
 
@@ -81,7 +81,7 @@ namespace App\Entity;
 
 use Psr\Cache\CacheItemPoolInterface;
 
-class CachedProductRepository implements ProductRepositoryInterface
+final class CachedProductRepository implements ProductRepositoryInterface
 {
     private $product_repository;
     private $cache_item_pool;
@@ -139,7 +139,7 @@ use App\Entity\Product;
 use App\Entity\ProductNotFoundException;
 use App\Entity\ProductRepositoryInterface;
 
-class ArrayProductRepository implements ProductRepositoryInterface
+final class ArrayProductRepository implements ProductRepositoryInterface
 {
     private $products = [];
     
