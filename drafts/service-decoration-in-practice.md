@@ -125,7 +125,9 @@ services:
 ```
 And done! The repository is now using caching to load products. No changes had to made to the old code or even the old services definitions. All we did was add.
 
-As seen in the example, the `CachedProductRepository` still provides all the functionality of the Doctrine `ProductRepository`. Moreover, it does not duplicate the code but reuses the `ProductRepository` to do so. Responsibilities of these classes are well defined. This is usually a good sign that it can be unit tested with ease.
+As seen in the example, the `CachedProductRepository` still provides all the functionality of the Doctrine `ProductRepository`. Moreover, it does not duplicate the code but reuses the `ProductRepository` to do so. That also means that responsibilities of these classes are well defined. One is interacting with doctrine; the other is providing caching on top if it. 
+
+These clear responsibilities also have another added benefit. Clear responsibilities is usually a good sign that it can be unit tested with ease. And speaking of testing, what about functional testing?
 
 ## Even more decoration
 
