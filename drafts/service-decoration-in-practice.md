@@ -86,8 +86,10 @@ final class CachedProductRepository implements ProductRepositoryInterface
     private $product_repository;
     private $cache;
 
-    public function __construct(ProductRepositoryInterface $product_repository, CacheItemPoolInterface $cache)
-    {
+    public function __construct(
+        ProductRepositoryInterface $product_repository, 
+        CacheItemPoolInterface $cache
+    ) {
         $this->product_repository = $product_repository;
         $this->cache = $cache;
     }
