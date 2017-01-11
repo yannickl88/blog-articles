@@ -84,23 +84,23 @@ use Psr\Cache\CacheItemPoolInterface;
 final class CachedProductRepository implements ProductRepositoryInterface
 {
     private $product_repository;
-    private $cache_item_pool;
+    private $cache;
 
-    public function __construct(ProductRepositoryInterface $product_repository, CacheItemPoolInterface $cache_item_pool)
+    public function __construct(ProductRepositoryInterface $product_repository, CacheItemPoolInterface $cache)
     {
         $this->product_repository = $product_repository;
-        $this->cache_item_pool = $cache_item_pool;
+        $this->cache = $cache;
     }
 
     public function get(int $id): Product
     {
-        $item = $this->cache_item_pool->getItem((string) $id);
+        $item = $this->cache->getItem((string) $id);
 
         if (!$item->isHit()) {
             $product = $this->product_repository->get($id);
 
             $item->set($product);
-            $this->cache_item_pool->save($item);
+            $this->cache->save($item);
         }
 
         return $item->get();
