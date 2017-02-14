@@ -6,9 +6,9 @@
 [3]: https://symfony.com/doc/current/bundles/extension.html#using-the-load-method
 [4]: http://api.symfony.com/master/Symfony/Component/Config/Definition/Exception/InvalidConfigurationException.html
 
-[Iltar wrote an excellent post][1] on what bundles are in Symfony. In this post I will dive a bit deeper into the configuration of a bundle, since most bundles require some configuration to work. Think of the Doctrine bundle that requires you to configure the database connection. Another example is the twig bundle which has a config item to let it know if it is in debug-mode. But how do you write this configs, how do they work, and why should you use them?
+[Iltar wrote an excellent post][1] on what bundles are in Symfony. In this post I will dive a bit deeper into the configuration of a bundle, since most bundles require some configuration to work. Think of the Doctrine bundle that requires you to configure the database connection. Another example is the twig bundle which has a config item to let it know if it is in debug-mode. But how do you write those configs, how do they work, and why should you use them?
 
-In this post I will give an example of a what you need to do to create a configuration for your bundle. 
+In this post I will give an example of what you need to do to create a configuration for your bundle. 
 
 ## Why configuration in the first place?
 So why configuration of a bundle? Well first of all it is not a necessity. You can relay on other ways to do so. For instance, making some parameters mandatory or passing options to method of services. Yet, these methods can be hard to explain or discover without proper documentation. 
