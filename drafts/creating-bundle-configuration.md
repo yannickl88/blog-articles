@@ -11,7 +11,7 @@
 In this post I will give an example of what you need to do to create a configuration for your bundle. 
 
 ## Why configuration in the first place?
-So why configuration of a bundle? Well first of all it is not a necessity. You can relay on other ways to do so. For instance, making some parameters mandatory or passing options to method of services. Yet, these methods can be hard to explain or discover without proper documentation. 
+So why configuration of a bundle? Well first of all it is not a necessity. You can rely on other ways to do so. For instance, making some parameters mandatory or passing options to method of services. Yet, these methods can be hard to explain or discover without proper documentation. 
 
 Configuration in Symfony a method of passing information from the application to the bundle *when the container is compiled*. Note here, *"when the container is compiled"*. This means that your configuration is only used for building the container, nothing more.
 
