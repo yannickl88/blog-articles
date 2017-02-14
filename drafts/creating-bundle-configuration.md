@@ -18,7 +18,7 @@ Configuration in Symfony a method of passing information from the application to
 This might seem like a limiting thing, but you have to look back at what a bundle is. To quote Iltar: *"The main purpose of a bundle however, is to provide an extension point for the Dependency Injection Container."* So the bundle is for modifying the service container. Having some configured values will help build the services your bundle is trying to register. Think of a location for writing files, or a URL of a web service.
 
 ## Defining a config
-The [Symfony docs do quite a good job at explaining how to define configuration for your bundle][2]. I will not go too much in depth, but only show a basic running example to give a brief impression on usage. So for our example the configuring will be for a small library which communicates with a web service.
+The [Symfony docs do quite a good job at explaining how to define configuration for your bundle][2]. I will not go too much in depth, but only show a basic running example to give a brief impression on usage. So as an example the configuration will be for a small library which communicates with a web service.
 
 In the library there is a `RestClient` which requires the services URL, a port, a username, a password and a timeout in seconds. The library class would look like so:
 
