@@ -1,5 +1,5 @@
 [//]: # (TITLE: Creating Bundle Configuration)
-[//]: # (DATE: 2017-02-15T09:00:00+01:00)
+[//]: # (DATE: 2017-02-14T09:00:00+01:00)
 [//]: # (TAGS: Symfony, Bundle, Configuration, Extension, DIC, Dependency Injection Container)
 [1]: https://stovepipe.systems/post/what-are-bundles-in-symfony
 [2]: https://symfony.com/doc/current/components/config/definition.html
