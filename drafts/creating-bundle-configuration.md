@@ -20,7 +20,7 @@ This might seem like a limiting thing, but you have to look back at what a bundl
 ## Defining a config
 The [Symfony docs do quite a good job at explaining how to define configuration for your bundle][2]. I will not go too much in depth, but only show a basic running example to give a brief impression on usage. So as an example the configuration will be for a small library which communicates with a web service.
 
-In the library there is a `RestClient` which requires the services URL, a port, a username, a password and a timeout in seconds. The library class would look like so:
+In the library there is a `RestClient` which requires the service URL, a port, a username, a password and a timeout in seconds. The library class would look like so:
 
 ```php
 namespace Acme\Lib\WebClient;
