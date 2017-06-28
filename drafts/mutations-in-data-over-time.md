@@ -1,8 +1,13 @@
 [//]: # (TITLE: Mutations in data over time)
 [//]: # (TAGS: entities, data)
 
-When dealing with entiprise software, your data is often the most valueable part. Without it you have no custormers and usally no income. So what are you doing to make sure the data is being dealt with correctly? 
+When dealing with enterprise software, your data is often the most valuable part. It contains all your customer information, contracts, invoices and much more. So what are you doing to make sure the data is being dealt with correctly? A bug in your code can have a high impact on the validity of your data. If the bug is causing unwanted changes in your data, fixing the damage might prove to be quite a big challenge.
 
-How will you trace back errors in your data years after the fact? This is something you need to think about when designing your software. There are many aproches in doing so but I found that I often try to make my data immutable. This forces you to think differently about your data and what the impact of an update will be.
+With this post I would like to show how data immutability can help designing a more robust system. One that is less susceptible to bugs that might change your data unwanted.
 
-## Common use-cases
+## The contradiction
+At first it might seems like a contradiction. Immutability and mutating data seems like to ends of the same spectrum. But consider this: Instead of changing the data, why not make a new version of the previous data and update that?
+
+Now it makes more sense and the two concepts can actually complement each other. Not only can we still change the data, we actually get a full revisions as a bonus. So tracing back a change is as easy as looking at past revisions.
+
+This comes at the advantage that from a code perspective, not a whole lot needs to change. Only the way you store the internal state of your domain needs to change.
