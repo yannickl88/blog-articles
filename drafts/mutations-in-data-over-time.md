@@ -37,43 +37,28 @@ class Contract
 
 ```php
 <?php
-class ContractVersion
-{
-    private $end_date;
-
-    public function __construct(\DateTime $end_date)
-    {
-        $this->end_date = $end_date;
-    }
-
-    public function getEndDate(): DateTime
-    {
-        return clone $this->end_date;
-    }
-}
-
 class VersionedContract
 {
     private $versions = [];
 
     public function __construct(\DateTime $end_date)
     {
-        $this->versions[] = new ContractVersion($end_date);
+        $this->versions[] = $end_date;
     }
 
     public function getEndDate(): DateTime
     {
-        return $this->getCurrentVersion()->getEndDate();
+        return clone $this->getCurrentVersion();
     }
 
-    private function getCurrentVersion(): ContractVersion
+    private function getCurrentVersion(): \DateTime
     {
         return end($this->versions);
     }
 
     public function renew(\DateInterval $interval)
     {
-        $this->versions[] = new ContractVersion($this->getCurrentVersion()->getEndDate()->add($interval));
+        $this->versions[] = $this->getEndDate()->add($interval);
     }
 }
 ```
