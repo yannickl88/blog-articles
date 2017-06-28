@@ -14,7 +14,7 @@ From a code perspective, not a whole lot needs to change to make this work if yo
 
 ```php
 <?php
-class Contract
+final class Contract
 {
     private $end_date;
 
@@ -28,7 +28,7 @@ class Contract
         return clone $this->end_date;
     }
 
-    public function renew(\DateInterval $interval)
+    public function renew(\DateInterval $interval): void
     {
         $this->end_date->add($interval);
     }
@@ -37,7 +37,7 @@ class Contract
 
 ```php
 <?php
-class VersionedContract
+final class VersionedContract
 {
     private $versions = [];
 
@@ -56,7 +56,7 @@ class VersionedContract
         return end($this->versions);
     }
 
-    public function renew(\DateInterval $interval)
+    public function renew(\DateInterval $interval): void
     {
         $this->versions[] = $this->getEndDate()->add($interval);
     }
