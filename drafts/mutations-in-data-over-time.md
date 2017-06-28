@@ -8,6 +8,8 @@ With this post I would like to show how data immutability can help designing a m
 ## The contradiction
 At first it might seems like a contradiction. Immutability and mutating data seems like to ends of the same spectrum. But consider this: Instead of changing the data, why not make a new version of the previous data and update that?
 
-Now it makes more sense and the two concepts can actually complement each other. Not only can we still change the data, we actually get a full revisions as a bonus. So tracing back a change is as easy as looking at past revisions.
+Now it makes more sense and the two concepts can actually complement each other. Not only can we still change the data, we actually get a full revisions as a bonus. So tracing back a change is as easy as looking at past revisions. Of course, you do not actually need to do this for your whole data object, you can do this for partial data too.
 
-This comes at the advantage that from a code perspective, not a whole lot needs to change. Only the way you store the internal state of your domain needs to change.
+From a code perspective, not a whole lot needs to change to make this work if you are using an ORM like doctrine. You can create an abstraction in such a way that the underlying data is not visible. For example, consider these two classes.
+
+The have the same public API, but one is immutable, the other is not.
