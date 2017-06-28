@@ -51,14 +51,14 @@ final class VersionedContract
         return clone $this->getCurrentVersion();
     }
 
-    private function getCurrentVersion(): \DateTime
-    {
-        return end($this->versions);
-    }
-
     public function renew(\DateInterval $interval): void
     {
         $this->versions[] = $this->getEndDate()->add($interval);
+    }
+
+    private function getCurrentVersion(): \DateTime
+    {
+        return end($this->versions);
     }
 }
 ```
