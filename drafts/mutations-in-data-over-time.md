@@ -12,4 +12,71 @@ Now it makes more sense and the two concepts can actually complement each other.
 
 From a code perspective, not a whole lot needs to change to make this work if you are using an ORM like doctrine. You can create an abstraction in such a way that the underlying data is not visible. For example, consider these two classes.
 
-The have the same public API, but one is immutable, the other is not.
+```php
+<?php
+class Contract
+{
+    private $end_date;
+
+    public function __construct(\DateTime $end_date)
+    {
+        $this->end_date = $end_date;
+    }
+
+    public function getEndDate(): DateTime
+    {
+        return clone $this->end_date;
+    }
+
+    public function renew(\DateInterval $interval)
+    {
+        $this->end_date->add($interval);
+    }
+}
+```
+
+```php
+<?php
+class ContractVersion
+{
+    private $end_date;
+
+    public function __construct(\DateTime $end_date)
+    {
+        $this->end_date = $end_date;
+    }
+
+    public function getEndDate(): DateTime
+    {
+        return clone $this->end_date;
+    }
+}
+
+class VersionedContract
+{
+    private $versions = [];
+
+    public function __construct(\DateTime $end_date)
+    {
+        $this->versions[] = new ContractVersion($end_date);
+    }
+
+    public function getEndDate(): DateTime
+    {
+        return $this->getCurrentVersion()->getEndDate();
+    }
+
+    private function getCurrentVersion(): ContractVersion
+    {
+        return end($this->versions);
+    }
+
+    public function renew(\DateInterval $interval)
+    {
+        $this->versions[] = new ContractVersion($this->getCurrentVersion()->getEndDate()->add($interval));
+    }
+}
+```
+Both `Contract` and `VersionedContract` have the same public API and behavior. Yet, one's data is immutable and the other is not. And yes, I agree that it requires more code and complexity is higher, but in return you get versioning of your data. 
+
+For instance, what if you have a bug in the renewal process that calculates the wrong interval. In the old model you will lose the previous data, making puzzling back the old data difficult. In the immutable case you have it easier since you can view the previous data. In such cases, recovery is easy and straightforward. You can even remove the new versions and run the renewal process again.
