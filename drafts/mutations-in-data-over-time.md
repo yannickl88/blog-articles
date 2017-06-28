@@ -62,6 +62,8 @@ final class VersionedContract
     }
 }
 ```
+> Note: all the ORM stuff is omitted, a full Doctrine version can be seen here.
+
 Both `Contract` and `VersionedContract` have the same public API and behavior. Yet, one's data is immutable and the other is not. And yes, I agree that it requires more code and complexity is higher, but in return you get versioning of your data. 
 
 For instance, what if you have a bug in the renewal process that calculates the wrong interval. In the old model you will lose the previous data, making puzzling back the old data difficult. In the immutable case you have it easier since you can view the previous data. In such cases, recovery is easy and straightforward. You can even remove the new versions and run the renewal process again.
