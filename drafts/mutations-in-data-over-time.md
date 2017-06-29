@@ -12,7 +12,7 @@ For example: consider you have contracts and each contract has an end date. The 
 
 A naive approach to implement this would be to update the end date each time you renew the contract. And this is what most people would do. But, you will lose the previous end date when you do so since it is overwritten. So instead, each renew can also be seen as a new version of the contract, but with a different end date. This way, when there was a bug that might have caused incorrect renewals it is easy to rollback to an old version. Without it, it can be a big challenge to restore the old data.
 
-In essence, this is the core principal of data immutability and most solutions are a variant of this. What usually differs is if you want to access the older versions from your domain model. So the database can have the old versions but they are never accessabel in the code. This allows you to query them when needed in the case of a bug and keeps the complexity lower.
+In essence, this is the core principal of data immutability and most solutions are a variant of this. What usually differs is if you want to access the older versions from your domain model. So alternatively the database can have the old versions but they are never accessabel in the code. This allows you to query them when needed in the case of a bug and keeps the complexity lower.
 
 ## Example
 
