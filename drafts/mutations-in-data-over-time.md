@@ -14,7 +14,7 @@ From a code perspective, not a whole lot needs to change to make this work if yo
 
 ```php
 <?php
-final class Contract
+class Contract
 {
     private $end_date;
 
@@ -37,7 +37,7 @@ final class Contract
 
 ```php
 <?php
-final class VersionedContract
+class VersionedContract
 {
     private $versions = [];
 
@@ -46,7 +46,7 @@ final class VersionedContract
         $this->versions[] = $end_date;
     }
 
-    public function getEndDate(): DateTime
+    public function getEndDate(): \DateTime
     {
         return clone $this->getCurrentVersion();
     }
