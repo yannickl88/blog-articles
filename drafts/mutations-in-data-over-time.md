@@ -40,7 +40,9 @@ class Contract
     }
 }
 ```
-You can see that the end date is updated when renewing the contract. The only data here that can change is the end date, so that would be something to version. Moreover, in this example this is the most important data in the contract. A versioned contract would look something like so:
+You can see that the end date is updated when renewing the contract, loosing the old data. 
+
+To created a versioned contract, all data needs to be extracted to a version. The resulting contract will then only contain the versioning logic. Additionally, you can implement the public methods which call the current version. This allows you to prevent exposure of the underlying data structure. A versioned contract would look something like so:
 ```php
 <?php
 class ContractVersion
@@ -85,4 +87,4 @@ class VersionedContract
 ```
 > Note: all the ORM stuff is omitted, a full Doctrine version can be seen here.
 
-Both `Contract` and `VersionedContract` have the same public API and behavior. Yet, one's data is immutable and the other is not. In this case the versions are present in the domain model. If not needed, you can change the `VersionedContract` to only have the latest version instead of a list. The data will still be in the database but not accessabel in the domain model.
+Both `Contract` and `VersionedContract` have the same public API and behavior. Yet, one's data is immutable and the other is not.
