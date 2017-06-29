@@ -52,7 +52,7 @@ class ContractVersion
         $this->end_date = $end_date;
     }
 
-    public function getEndDate(): DateTime
+    public function getEndDate(): \DateTime
     {
         return clone $this->end_date;
     }
@@ -67,7 +67,7 @@ class VersionedContract
         $this->versions[] = new ContractVersion($end_date);
     }
 
-    public function getEndDate(): DateTime
+    public function getEndDate(): \DateTime
     {
         return $this->getCurrentVersion()->getEndDate();
     }
