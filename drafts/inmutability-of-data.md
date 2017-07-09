@@ -1,5 +1,6 @@
-[//]: # (TITLE: Mutations in data over time)
+[//]: # (TITLE: Inmutability of Data)
 [//]: # (TAGS: entities, data)
+[doctrine-example]: https://github.com/yannickl88/blog-articles/tree/master/src/data-inmutability/Entity
 
 When dealing with enterprise software, your data is often the most valuable part. It contains all your customer information, contracts, invoices and much more. So what are you doing to do to make sure the data is being dealt with correctly? A bug in your code can have a high impact on the integrety of your data. If the bug is causing unwanted changes in your data, fixing the damage might prove to be quite a big challenge.
 
@@ -85,7 +86,7 @@ class VersionedContract
     }
 }
 ```
-> Note: all the ORM stuff is omitted, a full Doctrine version can be seen here.
+> Note: all the ORM stuff is omitted, a [full Doctrine version can be seen here][doctrine-example].
 
 Both `Contract` and `VersionedContract` have the same public API and behavior. Yet, one's data is immutable and the other is not. So what does mean for your data. If you would execute the following code:
 
