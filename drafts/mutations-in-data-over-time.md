@@ -131,4 +131,4 @@ As you can see, in the `VersionedContract`'s case, all the data ever present in 
 ## Wrapping up
 "What is the point?" you might be wondering, the end result is the same. But it is all about preserving your data. Should you be versioning all your data? Well no, there are some serious performance penalties for doing so. Should you version all your sensitive data? Hell yeah! Data related to clients, contracts, invoices, etc. are good examples for versioning. You want to be able to see when the data changes and what the values were. 
 
-If done right, and somebody asks: "What happend here 2 years back?" You can answer that question.
+If done right, and somebody asks: "What happend here 2 years ago?" You can answer that question.
