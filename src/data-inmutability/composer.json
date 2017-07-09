@@ -1,0 +1,17 @@
+{
+    "name": "yannick/data-inmutability",
+    "authors": [
+        {
+            "name": "Yannick de Lange",
+            "email": "yannick.l.88@gmail.com"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "Entity"
+        ]
+    },
+    "require": {
+        "doctrine/orm": "^2.5"
+    }
+}
