@@ -15,7 +15,6 @@ class Contract
 
     /**
      * @ORM\Column(type="datetime")
-     * @var DateTime
      */
     private $end_date;
 
@@ -24,7 +23,7 @@ class Contract
         $this->end_date = $end_date;
     }
 
-    public function getEndDate(): DateTime
+    public function getEndDate(): \DateTime
     {
         return clone $this->end_date;
     }

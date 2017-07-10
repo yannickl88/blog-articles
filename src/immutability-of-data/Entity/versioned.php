@@ -5,6 +5,41 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity()
  */
+class ContractVersion
+{
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $end_date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="VersionedContract", inversedBy="versions")
+     * @ORM\JoinColumn()
+     */
+    private $contract;
+
+    public function __construct(VersionedContract $contract, \DateTime $end_date)
+    {
+        $this->contract = $contract;
+        $this->end_date = $end_date;
+    }
+
+    public function getEndDate(): \DateTime
+    {
+        return clone $this->end_date;
+    }
+}
+
+/**
+ * @ORM\Entity()
+ */
 class VersionedContract
 {
     /**
@@ -16,7 +51,6 @@ class VersionedContract
 
     /**
      * @ORM\OneToMany(targetEntity="ContractVersion", mappedBy="contract", cascade={"persist"})
-     * @var \Doctrine\Common\Collections\Collection|ContractVersion[]
      */
     private $versions;
 
@@ -25,7 +59,7 @@ class VersionedContract
         $this->versions = new ArrayCollection([new ContractVersion($this, $end_date)]);
     }
 
-    public function getEndDate(): DateTime
+    public function getEndDate(): \DateTime
     {
         return $this->getCurrentVersion()->getEndDate();
     }
