@@ -130,6 +130,10 @@ The resulting data is as follows:
 As you can see, in the `VersionedContract`'s case, all the data ever present in the `end_date` field is there. This is in the form of `ContractVersion` records. While for the regular `Contract` we only have the most recent data.
 
 ## Wrapping up
-"What is the point?" you might be wondering, the end result is the same. But it is all about preserving your data. Should you be versioning all your data? Well no, there are some serious performance penalties for doing so. Should you version all your sensitive data? Hell yeah! Data related to clients, contracts, invoices, etc. are good examples for versioning. You want to be able to see when the data changes and what the values were. 
+As a developer it is your responsibility to design systems well. Doing the same for your data is just as important (if not more) as your application. You might be a small startup now, but after a couple of years you can grow into a large company. Designing your software as well as your data right from the start will save you later down the line.
+
+So, should you now run of and version all your data? Well no, there are some serious performance penalties for doing so. Hydration of your domain model now requires querying two tables. Moreover, you have introduced a collection you need to check with for every function call. Granted, you can optimize this somewhat, but it will always be slower than the plain example.
+
+So, should you version your sensitive data? Absolutely! Data related to clients, contracts, invoices, etc. are good examples for versioning. You want to be able to see when the data changes and what the values were. 
 
 If done right, and somebody asks: "What happend here 2 years ago?" You can answer that question.
