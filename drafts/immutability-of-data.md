@@ -1,4 +1,4 @@
-[//]: # (TITLE: Inmutability of Data)
+[//]: # (TITLE: Immutability of Data)
 [//]: # (TAGS: entities, data)
 [doctrine-example]: https://github.com/yannickl88/blog-articles/tree/master/src/data-inmutability/Entity
 
