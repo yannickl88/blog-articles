@@ -105,13 +105,15 @@ $entity_manager->flush();
 ```
 > Note: this example is using doctrine, but any ORM should be able to do this.
 
-The resulting data is as follows:
+When looking at the data for the regular implementation we get the expected result:
 
 *Contract*
 
 | id | end_date            |
 |----|---------------------|
 | 1  | 2018-10-10 10:10:00 |
+
+Now looking at the versioned contract we get two sets of data which together form the whole set. This looks as the following:
 
 *VersionedContract*
 
