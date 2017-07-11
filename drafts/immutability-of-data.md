@@ -132,7 +132,7 @@ As you can see, in the `VersionedContract`'s case, all the data ever present in 
 ## Wrapping up
 As a developer it is your responsibility to design systems well. Doing the same for your data is just as important (if not more) as your application. You might be a small startup now, but after a couple of years you can grow into a large company. Designing your software as well as your data right from the start will save you later down the line.
 
-So, should you now run of and version all your data? Well no, there are some serious performance penalties for doing so. Hydration of your domain model now requires querying two tables. Moreover, you have introduced a collection you need to check with for every function call. Granted, you can optimize this somewhat with smart queries, but it will always be slower than the plain example.
+So, should you now run off and version all your data? Well no, there are some serious performance penalties for doing so. Hydration of your domain model now requires querying two tables. Moreover, you have introduced a collection you need to check with for every function call. Granted, you can optimize this somewhat with smart queries, but it will always be slower than the plain example.
 
 So, should you version your sensitive data? Absolutely! Data related to clients, contracts, invoices, etc. are good examples for versioning. You want to be able to see when the data changes and what the values were. 
 
