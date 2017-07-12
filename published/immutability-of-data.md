@@ -3,7 +3,7 @@
 [//]: # (TAGS: php, entity, doctrine, data, data integrity)
 [doctrine-example]: https://github.com/yannickl88/blog-articles/tree/master/src/immutability-of-data/Entity
 
-When dealing with enterprise software, your data is often the most valuable part. It contains all your customer information, contracts, invoices and much more. So what are you doing to do to make sure the data is being dealt with correctly? A bug in your code can have a high impact on the integrity of your data. If the bug is causing unwanted changes in your data, fixing the damage might prove to be quite a big challenge.
+When dealing with enterprise software, your data is often the most valuable part. It contains all your customer information, contracts, invoices and much more. So what are you going to do to make sure the data is being dealt with correctly? A bug in your code can have a high impact on the integrity of your data. If the bug is causing unwanted changes in your data, fixing the damage might prove to be quite a big challenge.
 
 With this post I would like to show how data immutability can help design a more robust system. One that is less susceptible to bugs that might make unwanted changes to your data.
 
