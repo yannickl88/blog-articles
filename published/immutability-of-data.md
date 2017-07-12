@@ -1,5 +1,5 @@
 [//]: # (TITLE: Immutability of Data)
-[//]: # (DATE: 2017-07-12T08:00:00+00:00)
+[//]: # (DATE: 2017-07-12T07:15:00+01:00)
 [//]: # (TAGS: php, entity, doctrine, data, data integrity)
 [doctrine-example]: https://github.com/yannickl88/blog-articles/tree/master/src/immutability-of-data/Entity
 
