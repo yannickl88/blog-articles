@@ -5,10 +5,10 @@
 
 When dealing with enterprise software, your data is often the most valuable part. It contains all your customer information, contracts, invoices and much more. So what are you doing to do to make sure the data is being dealt with correctly? A bug in your code can have a high impact on the integrity of your data. If the bug is causing unwanted changes in your data, fixing the damage might prove to be quite a big challenge.
 
-With this post I would like to show how data immutability can help designing a more robust system. One that is less susceptible to bugs that might change your data unwanted.
+With this post I would like to show how data immutability can help design a more robust system. One that is less susceptible to bugs that might make unwanted changes to your data.
 
 ## The contradiction
-At first it might seems like a contradiction. Immutability and mutating data seems like to ends of the same spectrum. But these two concepts can actually complement each other when used together. Think of it like versioning your data. Each version is immutable by definition and a change will not update a version but create a new one.
+At first it might seems like a contradiction. Immutability and mutating data seems like two ends of the same spectrum. But these two concepts can actually complement each other when used together. Think of it like versioning your data. Each version is immutable by definition and a change will not update a version but create a new one.
 
 For example: consider you have contracts and each contract has an end date. The contracts can be renewed for a new period, this will extend the end date. 
 
@@ -42,9 +42,9 @@ class Contract
     }
 }
 ```
-You can see that the end date is updated when renewing the contract, loosing the old data. 
+You can see that the end date is updated when renewing the contract, losing the old data. 
 
-To created a versioned contract, all data needs to be extracted to a version. The resulting contract will then only contain the versioning logic. Additionally, you can implement the public methods which call the current version. This allows you to prevent exposure of the underlying data structure. A versioned contract would look something like so:
+To created a versioned contract, all data needs to be extracted to a version. The resulting contract will then only contain the versioning logic. Additionally, you can implement the public methods which call the current version. This allows you to prevent exposure of the underlying data structure. A versioned contract would look something like this:
 ```php
 <?php
 class ContractVersion
@@ -114,7 +114,7 @@ When looking at the data for the regular implementation we get the expected resu
 |----|---------------------|
 | 1  | 2018-10-10 10:10:00 |
 
-Now looking at the versioned contract we get two sets of data which together form the whole set. This looks as the following:
+Now looking at the versioned contract we get two sets of data which together form the whole set. This looks as follows:
 
 *VersionedContract*
 
