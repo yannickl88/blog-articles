@@ -1,5 +1,7 @@
 There is a famous problem that was presented in the American television game show Let's Make a Deal. In the show there is a part where the host presents a probability puzzle. It has some interesting properties which make the answer counter-intuitive at first. But, upon further inspection it has an interesting solution. This problem is the Monty Hall Problem.
 
+With this post I will show a way to get the correct answer to the puzzel by implementing it. Then simulating the puzzel enough times to have an answer without complicated math.
+
 ## The puzzel
 
 Consider three closed doors. Behind one of them is a nice car and the other two are zonks - or something else of no value. The host asks you to pick one of the three doors which you think is the car. Once picked, the host will pick one door one of the other doors which contains a zonk and reveal it. This leaves you with two doors and you have the option to stick with your choice, or pick the other door. What should you do?
