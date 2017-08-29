@@ -38,7 +38,7 @@ $problem->pick(random_int(1, 3), function (array $doors) {});
 
 This is also a nice encapsulation example. From the outside (i.e., from an instance of `MontyHall`) you cannot see the correct answer. The only way to find out is to call `::pick()` and see if it was correct.
 
-Anyhow, there is still the implementation of the `pick` method. A simple way would be to pick a random door which is not the one picked and the the correct one. Then remove this door from the options and use it for the second choice. If this choice returns the correct door, return `true` else `false`. This could look like so, where we pick a random door for the second choice.
+Anyhow, there is still the implementation of the `pick` method. A simple way would be to pick a random door which is not the one picked and then the correct one. Then remove this door from the options and use it for the second choice. If this choice returns the correct door, return `true` else `false`. This could look like so, where we pick a random door for the second choice.
 
 ```php
 <?php
