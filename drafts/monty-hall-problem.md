@@ -1,4 +1,4 @@
-There is a famous problem that was presented in the American television game show Let's Make a Deal. In the show there is a part where the host presents a probability puzzle. It has some interesting properties which make the answer counter-intuitive at first. But, upon further inspection it has an interesting solution. This problem is the Monty Hall Problem.
+There is a famous problem that was presented in the American television game show Let's Make a Deal. In the show there is a part where the host presents a probability puzzle for the contestant. What makes this puzzle interesting is that the answer is a bit counter-intuitive at first. Yet, even when explained and proven, some still are not convinced by the answer. This problem is the Monty Hall Problem.
 
 With this post I will show a way to get the correct answer to the puzzel by implementing it. Then simulating the puzzel enough times to have an answer without complicated math.
 
@@ -37,6 +37,7 @@ class MoneyHall
 $problem = new MoneyHall();
 $problem->pick(random_int(1, 3), function (array $doors) {});
 ```
+> Note here that we are assuming `random_int(1, 3)` is truly random. PHP does do a good job of having a real random value but it remains pseudo-random. However, for the sake of this example, it is good enough.
 
 This is also a nice encapsulation example. From the outside (i.e., from an instance of `MontyHall`) you cannot see the correct answer. The only way to find out is to call `::pick()` and see if it was correct.
 
