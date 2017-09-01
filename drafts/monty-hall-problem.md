@@ -151,7 +151,7 @@ Here you will find the answer is around _0.6666_, and again this is correct!
 
 So, how accurate is the simulation? Did we perform enough tests? Those are valid questions to ask when doing these kind of things. Luckily we can verify these questions by testing the hypothesis using a null-hypothesis.
 
-Let's assume there is no difference in switching. That means that after the first round there are two doors left and they have equal probability to contain a car. That means that the probability of winning a car in the second round should be 50%. For this, let _p_ be the probability that we win the car. The null-hypothesis (H<sub>0</sub>) would then be _p_ = 0.5. 
+Let's assume there is no difference in switching. That means that after the first round there are two doors left and they have equal probability to contain a car. That means that the probability of winning a car in the second round should be 50%. For this, let _p_ be the probability that we win the car. The null-hypothesis (H<sub>0</sub>) would then be _p_ = _0.5_. 
 
 Time to do some sampling. With _10000_ samples a run resulted in _3267_ wins. Because this is a Binomial distribution we use a  Binomial test in R to calculate the _p-value_.  The result is _2.2e-16_, which is an extremely low value, so we have to reject the null-hypothesis and say that it is not _0.5_. 
 
