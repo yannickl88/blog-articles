@@ -151,11 +151,11 @@ Here you will find the answer is around `0.6666`, and again this is correct!
 
 So, how accurate is the simulation? Did we perform enough tests? Those are valid questions to ask when doing these kind of things. Luckily we can verify these questions by testing the hypothesis using a null-hypothesis.
 
-Let's assume there is no difference in switching. That means that after the first round there are two doors left and they have equal probability to contain a car. That means that the probability of winning a car in the second round should be 50%. For this, let `p` be the probability that we win the car. The null-hypothesis (H<sub>0</sub>) would then be `p` = 0.5. 
+Let's assume there is no difference in switching. That means that after the first round there are two doors left and they have equal probability to contain a car. That means that the probability of winning a car in the second round should be 50%. For this, let _p_ be the probability that we win the car. The null-hypothesis (H<sub>0</sub>) would then be _p_ = 0.5. 
 
-Time to do some sampling, with 10000 samples a run resulted in 3267 wins. Because this is a Binomial distribution we use a  Binomial test in R to calculate the _p-value_.  The result is 2.2e-16, which is an extremely low value, so we have to reject the null-hypothesis and say that it is not 0.5. 
+Time to do some sampling. With 10000 samples a run resulted in 3267 wins. Because this is a Binomial distribution we use a  Binomial test in R to calculate the _p-value_.  The result is 2.2e-16, which is an extremely low value, so we have to reject the null-hypothesis and say that it is not 0.5. 
 
-From our other tests we concluded that is somewhere around 0.3333. So the new null-hypothesis would be that `p` = 0.3333. When calculating this again we get a _p-value_ of 0.1615. With a confidence interval of 95% that is more than enough to accept the new null-hypothesis. That also means that switching will have a probability of 0.6666.
+From our other tests we concluded that is somewhere around 0.3333. So the new null-hypothesis would be that _p_ = 0.3333. When calculating this again we get a _p-value_ of 0.1615. With a confidence interval of 95% that is more than enough to accept the new null-hypothesis. That also means that switching will have a probability of 0.6666.
 
 # Wrapping up
 
