@@ -76,7 +76,7 @@ $problem->pick(random_int(1, 3), function (array $doors) {
 
 ## Running the simulation
 
-Now we have a working simulation of the Monty Hall Problem the next step is sampling. The goal is to perform many samples to get a reliable answer. While there is no golden number, this depends on the correctness of the simulation. In this case, even after 100 iterations you can get quite a decent answer. But, better results are in ranges of 10000 or even 1000000.
+Now we have a working simulation of the Monty Hall Problem the next step is sampling. The goal is to perform many samples to get a reliable answer. While there is no golden number, this depends on the correctness of the simulation. In this case, even after 100 iterations you can get quite a decent answer. But, better results are in ranges of 1000 or even 10000.
 
 To do this, a simple while loop will suffice.
 
@@ -84,7 +84,7 @@ To do this, a simple while loop will suffice.
 $total = 0;
 $correct = 0;
 
-while ($total < 100000) {
+while ($total < 10000) {
     $total++;
 
     $problem = new MoneyHall();
@@ -107,7 +107,7 @@ So what about sticking with your original choice? No problem, a small change to 
 $total = 0;
 $correct = 0;
 
-while ($total < 100000) {
+while ($total < 10000) {
     $total++;
 
     $problem = new MoneyHall();
@@ -128,7 +128,7 @@ This will result in a value of around `0.3333`, and this is the correct answer. 
 $total = 0;
 $correct = 0;
 
-while ($total < 100000) {
+while ($total < 10000) {
     $total++;
 
     $problem = new MoneyHall();
