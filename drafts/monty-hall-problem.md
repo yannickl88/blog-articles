@@ -99,7 +99,7 @@ while ($total < 10000) {
 echo sprintf('%f at %d iterations', $correct / $total, $total), "\n";
 ```
 
-When executing this code, you will get a value of around `0.5`. This is indeed what to expect when selecting a random door, you would expect to be right half of the time. To get even better answers, run the test multiple times and average the result. This will result in a number closer to the correct value.
+When executing this code, you will get a value of around _0.5_. This is indeed what to expect when selecting a random door, you would expect to be right half of the time. To get even better answers, run the test multiple times and average the result. This will result in a number closer to the correct value.
 
 So what about sticking with your original choice? No problem, a small change to the second choice callback will give this result.
 
@@ -122,7 +122,7 @@ while ($total < 10000) {
 echo sprintf('%f at %d iterations', $correct / $total, $total), "\n";
 ```
 
-This will result in a value of around `0.3333`, and this is the correct answer. So, what about when we switch?
+This will result in a value of around _0.3333_, and this is the correct answer. So, what about when we switch?
 
 ```php
 $total = 0;
@@ -145,7 +145,7 @@ while ($total < 10000) {
 echo sprintf('%f at %d iterations', $correct / $total, $total), "\n";
 ```
 
-Here you will find the answer is around `0.6666`, and again this is correct! 
+Here you will find the answer is around _0.6666_, and again this is correct! 
 
 ## Are we right?
 
@@ -153,9 +153,9 @@ So, how accurate is the simulation? Did we perform enough tests? Those are valid
 
 Let's assume there is no difference in switching. That means that after the first round there are two doors left and they have equal probability to contain a car. That means that the probability of winning a car in the second round should be 50%. For this, let _p_ be the probability that we win the car. The null-hypothesis (H<sub>0</sub>) would then be _p_ = 0.5. 
 
-Time to do some sampling. With 10000 samples a run resulted in 3267 wins. Because this is a Binomial distribution we use a  Binomial test in R to calculate the _p-value_.  The result is 2.2e-16, which is an extremely low value, so we have to reject the null-hypothesis and say that it is not 0.5. 
+Time to do some sampling. With _10000_ samples a run resulted in _3267_ wins. Because this is a Binomial distribution we use a  Binomial test in R to calculate the _p-value_.  The result is _2.2e-16_, which is an extremely low value, so we have to reject the null-hypothesis and say that it is not _0.5_. 
 
-From our other tests we concluded that is somewhere around 0.3333. So the new null-hypothesis would be that _p_ = 0.3333. When calculating this again we get a _p-value_ of 0.1615. With a confidence interval of 95% that is more than enough to accept the new null-hypothesis. That also means that switching will have a probability of 0.6666.
+From our other tests we concluded that is somewhere around _0.3333_. So the new null-hypothesis would be that _p_ = _0.3333_. When calculating this again we get a _p-value_ of _0.1615_. With a confidence interval of 95% that is more than enough to accept the new null-hypothesis. That also means that switching will have a probability of _0.6666_.
 
 # Wrapping up
 
