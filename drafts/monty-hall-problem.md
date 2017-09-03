@@ -1,6 +1,6 @@
 [//]: # (TITLE: Monty Hall problem)
 [//]: # (DATE: 2017-09-04T08:00:00+01:00)
-[//]: # (TAGS: logic, php, statistics)
+[//]: # (TAGS: php, statistics, simulation)
 
 There is a famous problem that was presented in the American television game show Let's Make a Deal. In the show there is a part where the host presents a probability puzzle for the contestant. What makes this puzzle interesting is that the answer is a bit counter-intuitive at first. Yet, even when explained and proven, some still are not convinced by the answer. This problem is the Monty Hall Problem.
 
