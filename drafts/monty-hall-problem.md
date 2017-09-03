@@ -122,7 +122,7 @@ while ($total < 10000) {
 echo sprintf('%f at %d iterations', $correct / $total, $total), "\n";
 ```
 
-This will result in a value of around _0.3333_, and this is the correct answer. So, what about when we switch?
+This will result in a value of around _1/3_, and this is the correct answer. So, what about when we switch?
 
 ```php
 $total = 0;
@@ -145,7 +145,7 @@ while ($total < 10000) {
 echo sprintf('%f at %d iterations', $correct / $total, $total), "\n";
 ```
 
-Here you will find the answer is around _0.6666_, and again this is correct! 
+Here you will find the answer is around _2/3_, and again this is correct!
 
 ## Are we right?
 
@@ -155,7 +155,7 @@ Let's assume there is no difference in switching. That means that after the firs
 
 Time to do some sampling. With _10000_ samples a run resulted in _3267_ wins. Because this is a Binomial distribution we use a  Binomial test in R to calculate the _p-value_.  The result is _2.2e-16_, which is an extremely low value, so we have to reject the null-hypothesis and say that it is not _0.5_. 
 
-From our other tests we concluded that is somewhere around _0.3333_. So the new null-hypothesis would be that _p_ = _0.3333_. When calculating this again we get a _p-value_ of _0.1615_. With a confidence interval of 95% that is enough so we cannot reject the the new null-hypothesis. Given the option, we can assume that the value might than be indeed 1/3. That also means that switching will have a probability of _0.6666_.
+From our other tests we concluded that is somewhere around _1/3_. So the new null-hypothesis would be that _p_ = _1/3_. When calculating this again we get a _p-value_ of _0.1615_. With a confidence interval of 95% that is enough so we cannot reject the the new null-hypothesis. Given the option, we can assume that the value might than be indeed _1/3_. That also means that switching will have a probability of _2/3_.
 
 ## Wrapping up
 
