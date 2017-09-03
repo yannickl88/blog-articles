@@ -37,7 +37,7 @@ class MoneyHall
 $problem = new MoneyHall();
 $problem->pick(random_int(1, 3), function (array $doors) {});
 ```
-> Note here that we are assuming `random_int(1, 3)` is truly random. PHP does do a good job of having a real random value but it remains pseudo-random. However, for the sake of this example, it is good enough.
+> Note here that we are assuming `random_int(1, 3)` is truly random. PHP does do a good job of having a real random value but it remains pseudo-random. But, for the sake of this example, it is good enough.
 
 This is also a nice encapsulation example. From the outside (i.e., from an instance of `MontyHall`) you cannot see the correct answer. The only way to find out is to call `::pick()` and see if it was correct.
 
@@ -99,7 +99,7 @@ while ($total < 10000) {
 echo sprintf('%f at %d iterations', $correct / $total, $total), "\n";
 ```
 
-When executing this code, you will get a value of around _0.5_. This is indeed what to expect when selecting a random door, you would expect to be right half of the time. To get even better answers, run the test multiple times and average the result. This will result in a number closer to the correct value.
+When executing this code, you will get a value of around _0.5_. This is what to expect when selecting a random door, you would expect to be right half of the time. To get even better answers, run the test even more times and average the result. This will result in a number closer to the correct value.
 
 So what about sticking with your original choice? No problem, a small change to the second choice callback will give this result.
 
@@ -155,8 +155,10 @@ Let's assume there is no difference in switching. That means that after the firs
 
 Time to do some sampling. With _10000_ samples a run resulted in _3267_ wins. Because this is a Binomial distribution we use a  Binomial test in R to calculate the _p-value_.  The result is _2.2e-16_, which is an extremely low value, so we have to reject the null-hypothesis and say that it is not _0.5_. 
 
-From our other tests we concluded that is somewhere around _0.3333_. So the new null-hypothesis would be that _p_ = _0.3333_. When calculating this again we get a _p-value_ of _0.1615_. With a confidence interval of 95% that is more than enough to accept the new null-hypothesis. That also means that switching will have a probability of _0.6666_.
+From our other tests we concluded that is somewhere around _0.3333_. So the new null-hypothesis would be that _p_ = _0.3333_. When calculating this again we get a _p-value_ of _0.1615_. With a confidence interval of 95% that is enough so we cannot reject the the new null-hypothesis. Given the option, we can assume that the value might than be indeed 1/3. That also means that switching will have a probability of _0.6666_.
 
-# Wrapping up
+## Wrapping up
 
-After running the simulations we can conclude that it the best option is to switch. This is the same answer the formal math finds as the result.
+ The Monty Hall problem has been a topic of discussion for debate due to a non-intuitive solution. By re-creating the problem and simulating the problem you can find the best option is to switch. This is the same answer the formal math finds as the result if you dig in further.
+
+So if you even find a problem where you are unsure what is the best choice, you can find out yourself. You do not have to be a master statistician nor a great mathematician. All you need is your favorite programming language and a bit of time. All you have to consider to run your simulations enough times.
