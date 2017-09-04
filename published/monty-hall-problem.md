@@ -20,7 +20,7 @@ Let us first setup the problem a bit. We have a set of doors, a correct one and 
 
 ```php
 <?php
-class MoneyHall
+class MontyHall
 {
     private $doors;
     private $door_with_prize;
@@ -38,7 +38,7 @@ class MoneyHall
     }
 }
 
-$problem = new MoneyHall();
+$problem = new MontyHall();
 $problem->pick(random_int(1, 3), function (array $doors) {});
 ```
 > Note here that we are assuming `random_int(1, 3)` is truly random. PHP does do a good job of having a real random value but it remains pseudo-random. But, for the sake of this example, it is good enough.
@@ -49,7 +49,7 @@ Anyhow, there is still the implementation of the `pick` method. A simple way wou
 
 ```php
 <?php
-class MoneyHall
+class MontyHall
 {
     // ...
 
@@ -70,7 +70,7 @@ class MoneyHall
     }
 }
 
-$problem = new MoneyHall();
+$problem = new MontyHall();
 $problem->pick(random_int(1, 3), function (array $doors) {
     shuffle($doors);
     
@@ -91,7 +91,7 @@ $correct = 0;
 while ($total < 10000) {
     $total++;
 
-    $problem = new MoneyHall();
+    $problem = new MontyHall();
 
     $correct += (int) $problem->pick(random_int(1, 3), function (array $doors) {
         shuffle($doors);
@@ -114,7 +114,7 @@ $correct = 0;
 while ($total < 10000) {
     $total++;
 
-    $problem = new MoneyHall();
+    $problem = new MontyHall();
 
     $choice = random_int(1, 3);
 
@@ -135,7 +135,7 @@ $correct = 0;
 while ($total < 10000) {
     $total++;
 
-    $problem = new MoneyHall();
+    $problem = new MontyHall();
 
     $choice = random_int(1, 3);
 
