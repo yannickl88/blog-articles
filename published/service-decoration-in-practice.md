@@ -8,7 +8,7 @@
 [symfony-service-decoration]: http://symfony.com/doc/current/service_container/service_decoration.html
 [symfony-functional-tests]: https://symfony.com/doc/current/testing.html#functional-tests
 
-Recently [WouterJ has written an excelent article about repositories][wouterj-repositories-are-just-collections] and how to treat them as collections. In it he also shows that it is useful to have interfaces on your repository classes. If you have not yet read it, I fully recommend doing so. 
+Recently [WouterJ has written an excellent article about repositories][wouterj-repositories-are-just-collections] and how to treat them as collections. In it he also shows that it is useful to have interfaces on your repository classes. If you have not yet read it, I fully recommend doing so. 
 
 This concept is something I have recently applied in a project and found that there are some extra benefits in using those interfaces. In this post I would like to expand on WouterJ's ideas and show how this enables service decoration.
 
