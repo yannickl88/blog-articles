@@ -83,7 +83,7 @@ fallback:
 
 That is it! Now any URL you will use will end up in the `FallbackController` and will trigger your old framework (Zend Framework in this case). For this example, the result would look something like this, you even have a symfony toolbar!
 
-![Symfony and Zend Framework](http://img.yannickl88.nl/fallback_zf.png)
+![Symfony and Zend Framework](https://img.yannickl88.nl/fallback_zf.png)
 
 ## Migration to Symfony
 You now have routed all paths to your `FallbackController`, now what? Well, the routing configuration actually has an implicit priority. In the case that two routes would match the same URL, the route that is defined first, i.e., higher in your routing file, will be picked. This means that routes defined before the fallback will have a higher priority. 
