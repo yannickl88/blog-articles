@@ -120,5 +120,5 @@ Other examples are the [Doctrine metadata association types][doctrine-associatio
 Do you have another example? Let me know in the comments!
 
 [php-error-flags]: http://php.net/manual/en/errorfunc.constants.php
-[doctrine-association-fields]: http://www.doctrine-project.org/api/orm/2.5/class-Doctrine.ORM.Mapping.ClassMetadataInfo.html#ONE_TO_ONE
+[doctrine-association-fields]: https://github.com/doctrine/doctrine2/blob/2.6/lib/Doctrine/ORM/Mapping/ClassMetadataInfo.php#L166
 [mysql-bit-funcitons]: http://dev.mysql.com/doc/refman/5.7/en/bit-functions.html
